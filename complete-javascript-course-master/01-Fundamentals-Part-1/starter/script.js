@@ -119,13 +119,35 @@
 // // console.log(bmiM2, bmiJ2, markHigherBMI2)
 
 
-const firstName = 'Jonas';
-const job = 'teacher';
-const birthdayYear = 1991;
-const year = 2037;
+// const firstName = 'Jonas';
+// const job = 'teacher';
+// const birthdayYear = 1991;
+// const year = 2037;
 
-// c 
+// // c 
 
-const jonas = `I'm ${firstName}, a ${year - birthdayYear} years old ${job}!`
+// const jonas = `I'm ${firstName}, a ${year - birthdayYear} years old ${job}!`
 
-console.log(jonas)
+// console.log(jonas)
+
+
+const age = 15;
+const isOldEnough = age >= 18;
+
+if (isOldEnough) {
+  console.log('Is Old')
+} else {
+  const yearsLeft = 18 - age;
+  console.log(`Sara is too young, wait another ${yearsLeft} years`)
+}
+
+const birthYear = 1991;
+let century;
+
+if (birthYear <= 2000) {
+  century = 20;
+} else {
+  century = 21;
+}
+
+console.log(century)
