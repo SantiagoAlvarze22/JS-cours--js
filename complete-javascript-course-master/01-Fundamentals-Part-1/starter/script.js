@@ -131,23 +131,76 @@
 // console.log(jonas)
 
 
-const age = 15;
-const isOldEnough = age >= 18;
+// const age = 15;
+// const isOldEnough = age >= 18;
 
-if (isOldEnough) {
-  console.log('Is Old')
+// if (isOldEnough) {
+//   console.log('Is Old')
+// } else {
+//   const yearsLeft = 18 - age;
+//   console.log(`Sara is too young, wait another ${yearsLeft} years`)
+// }
+
+// const birthYear = 1991;
+// let century;
+
+// if (birthYear <= 2000) {
+//   century = 20;
+// } else {
+//   century = 21;
+// }
+
+// console.log(century)
+
+/*
+Coding Challenge #2
+Use the BMI example from Challenge #1, and the code you already wrote, and
+improve it.
+Your tasks:
+1. Print a nice output to the console, saying who has the higher BMI. The message
+is either "Mark's BMI is higher than John's!" or "John's BMI is higher than Mark's!"
+2. Use a template literal to include the BMI values in the outputs. Example: "Mark's
+BMI (28.3) is higher than John's (23.9)!"
+Hint: Use an if/else statement �
+GOOD LUCK �
+*/
+
+//Data 1
+const markMass = 78;
+const markHeight = 1.69;
+const johnMass = 92;
+const johnHeight = 1.95;
+
+//Data 2
+const markMass2 = 95;
+const markHeight2 = 1.88;
+const johnMass2 = 85;
+const johnHeight2 = 1.76;
+
+
+//BMI1
+const bmiM1 = markMass / (markHeight ** 2);
+const bmiJ1 = johnMass / (johnHeight ** 2);
+
+//BMI2
+
+const bmiM2 = markMass2 / (markHeight2 ** 2);
+const bmiJ2 = johnMass2 / (johnHeight2 ** 2);
+
+const markHigherBMI = bmiM1 > bmiJ1
+const markHigherBMI2 = bmiM2 > bmiJ2
+
+// console.log(bmiM1, bmiJ1, markHigherBMI)
+
+if (bmiM1 > bmiJ1) {
+  console.log(`Mark's BMI ${bmiM1} is higher than jonh's BMI ${bmiJ1}`)
 } else {
-  const yearsLeft = 18 - age;
-  console.log(`Sara is too young, wait another ${yearsLeft} years`)
+  console.log(`John's BMI ${bmiJ1} is higher than john's BM1 ${bmiJ1}`)
 }
 
-const birthYear = 1991;
-let century;
-
-if (birthYear <= 2000) {
-  century = 20;
+if (bmiM2 > bmiJ2) {
+  console.log(`Mark's BMI (${bmiM2}) is higher than jonh's BMI (${bmiJ2})`)
 } else {
-  century = 21;
+  console.log(`John's BMI (${bmiJ2}) is higher than john's BM1 (${bmiM2})`)
 }
-
-console.log(century)
+// console.log(bmiM2, bmiJ2, markHigherBMI2)
