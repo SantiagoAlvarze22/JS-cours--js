@@ -306,50 +306,90 @@ Test data:
 § Data Bonus 2: Dolphins score 97, 112 and 101. Koalas score 109, 95 and 106
 */
 
-const DolphinsScore1 = 96;
-const DolphinsScore2 = 108;
-const DolphinsScore3 = 89;
+// const DolphinsScore1 = 96;
+// const DolphinsScore2 = 108;
+// const DolphinsScore3 = 89;
 
-const averageDolphinsScore = (DolphinsScore1 + DolphinsScore2 + DolphinsScore3) / 3;
-console.log(averageDolphinsScore)
+// const averageDolphinsScore = (DolphinsScore1 + DolphinsScore2 + DolphinsScore3) / 3;
+// console.log(averageDolphinsScore)
 
-const koalasScore1 = 88;
-const koalasScore2 = 91;
-const koalasScore3 = 110;
+// const koalasScore1 = 88;
+// const koalasScore2 = 91;
+// const koalasScore3 = 110;
 
-const averageKoalasScore = (koalasScore1 + koalasScore2 + koalasScore3) / 3;
-console.log(averageKoalasScore)
+// const averageKoalasScore = (koalasScore1 + koalasScore2 + koalasScore3) / 3;
+// console.log(averageKoalasScore)
 
-const dolphinsWins = averageDolphinsScore > averageKoalasScore;
+// const dolphinsWins = averageDolphinsScore > averageKoalasScore;
 
-//compare 
-if (dolphinsWins) {
-  console.log(`Dolphins team has won! with an average of ${Math.ceil(averageDolphinsScore)}`)
-} else {
-  console.log(`Koalas team has won! with an average of ${Math.ceil(averageKoalasScore)}`)
+// //compare 
+// if (dolphinsWins) {
+//   console.log(`Dolphins team has won! with an average of ${Math.ceil(averageDolphinsScore)}`)
+// } else {
+//   console.log(`Koalas team has won! with an average of ${Math.ceil(averageKoalasScore)}`)
+// }
+
+// //Bonus 1
+
+// const DolphinsScoreBonus1 = 97;
+// const DolphinsScoreBonus2 = 112;
+// const DolphinsScoreBonus3 = 101;
+
+// const averageDolphinsBonusScore = (DolphinsScoreBonus1 + DolphinsScoreBonus2 + DolphinsScoreBonus3) / 3;
+// console.log(averageDolphinsBonusScore)
+
+// const koalasScoreBonus1 = 109;
+// const koalasScoreBonus2 = 95;
+// const koalasScoreBonus3 = 123;
+
+// const averageKoalasBonusScore = (koalasScoreBonus1 + koalasScoreBonus2 + koalasScoreBonus3) / 3;
+// console.log(averageKoalasBonusScore)
+
+// if (averageDolphinsBonusScore > averageKoalasBonusScore && (DolphinsScoreBonus1 % 100 && DolphinsScoreBonus2 > 100 && DolphinsScoreBonus3 > 100)) {
+//   console.log(`Dolphins won`)
+// } else if (averageKoalasBonusScore > averageDolphinsBonusScore && (koalasScoreBonus1 > 100 && koalasScoreBonus2 > 100 && koalasScoreBonus3 > 100)) {
+//   console.log(`Kolas won`)
+// } else {
+//   console.log(`No one won`)
+// }
+
+const day = 'hey';
+
+switch (day) {
+  case 'monday':
+    console.log('Plan course structure');
+    break;
+  case 'tuesday':
+    console.log('do another thing');
+    break;
+  case 'wednesday':
+    console.log('hey another');
+    break;
+  case 'thursday':
+    console.log('stop for a while');
+    break;
+  case 'friday':
+    console.log('finish');
+    break;
+  case 'saturday':
+  case 'sunday':
+    console.log('Have fun in your weekend');
+    break;
+  default:
+    console.log('not a valid day');
 }
 
-//Bonus 1
-
-const DolphinsScoreBonus1 = 97;
-const DolphinsScoreBonus2 = 112;
-const DolphinsScoreBonus3 = 101;
-
-const averageDolphinsBonusScore = (DolphinsScoreBonus1 + DolphinsScoreBonus2 + DolphinsScoreBonus3) / 3;
-console.log(averageDolphinsBonusScore)
-
-const koalasScoreBonus1 = 109;
-const koalasScoreBonus2 = 95;
-const koalasScoreBonus3 = 123;
-
-const averageKoalasBonusScore = (koalasScoreBonus1 + koalasScoreBonus2 + koalasScoreBonus3) / 3;
-console.log(averageKoalasBonusScore)
-
-if (averageDolphinsBonusScore > averageKoalasBonusScore && (DolphinsScoreBonus1 % 100 && DolphinsScoreBonus2 > 100 && DolphinsScoreBonus3 > 100)) {
-  console.log(`Dolphins won`)
-} else if (averageKoalasBonusScore > averageDolphinsBonusScore && (koalasScoreBonus1 > 100 && koalasScoreBonus2 > 100 && koalasScoreBonus3 > 100)) {
-  console.log(`Kolas won`)
-} else {
-  console.log(`No one won`)
-}
-
+//challange 
+if (day === 'monday') {
+  console.log('Plan course structure');
+} else if (day === 'tuesday') {
+  console.log('do another thing');
+} else if (day === 'wednesday') {
+  console.log('hey another');
+} else if (day === 'thursday') {
+  console.log('stop for a while');
+} else if (day === 'friday') {
+  console.log('finish');
+} else if (day === 'saturday' || day === 'sunday') {
+  console.log('Have fun in your weekend');
+} else { console.log('not a valid day'); }
