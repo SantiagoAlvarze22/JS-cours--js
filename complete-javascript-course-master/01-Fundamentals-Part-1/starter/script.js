@@ -206,21 +206,44 @@ GOOD LUCK �
 // console.log(bmiM2, bmiJ2, markHigherBMI2)
 
 //type converstion
-const inputYear = '1991';
-console.log(Number(inputYear), inputYear)
-console.log(typeof (Number(inputYear) + 10)) //string //number
+// const inputYear = '1991';
+// console.log(Number(inputYear), inputYear)
+// console.log(typeof (Number(inputYear) + 10)) //string //number
 
-console.log(String(23), 23)
+// console.log(String(23), 23)
 
-//type coercion
+// //type coercion
 
-console.log('hey' + 23 + 'hey')
-console.log('23' + '23')
-console.log('23' - '23' - 12)
-console.log('23' / '2')
-console.log('23' * '5')
+// console.log('hey' + 23 + 'hey')
+// console.log('23' + '23')
+// console.log('23' - '23' - 12)
+// console.log('23' / '2')
+// console.log('23' * '5')
 
-let n = '1' + 1; // '11'
-n = n - 1 // 10
+// let n = '1' + 1; // '11'
+// n = n - 1 // 10
 
-console.log(n)
+// console.log(n)
+
+
+//4 falsy value: 0, '', undefined, null, NaN
+
+console.log(Boolean(0));
+console.log(Boolean(''));
+console.log(Boolean(undefined));
+console.log(Boolean('hey'));
+console.log(Boolean({}));
+
+const money = 0;
+if (money) {
+  console.log("Don't spend it all");
+} else {
+  console.log('You should get a job!! ');
+}
+
+let height = 0;
+if (height) {
+  console.log('Yas');
+} else {
+  console.log('Height is UNDEFINED');
+}
