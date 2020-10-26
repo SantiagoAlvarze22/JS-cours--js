@@ -248,24 +248,38 @@ GOOD LUCK �
 //   console.log('Height is UNDEFINED');
 // }
 
-const age = 18;
+// const age = 18;
 
-if (age === 18) console.log('You just became an adult ');
+// if (age === 18) console.log('You just became an adult ');
 
-if (age == 18) console.log('YOU JUST BECAME AN ADULT :) (LOOS E)');
+// if (age == 18) console.log('YOU JUST BECAME AN ADULT :) (LOOS E)');
 
-const favourite = Number(prompt("What's your favourite number"))
+// const favourite = Number(prompt("What's your favourite number"))
 
-console.log(favourite)
+// console.log(favourite)
 
-if (favourite === 100) {
-  console.log('Hey you guess my favourite number')
-} else if (favourite === 7) {
-  console.log('is a cool number')
-} else {
-  console.log('Reload and try again')
-}
+// if (favourite === 100) {
+//   console.log('Hey you guess my favourite number')
+// } else if (favourite === 7) {
+//   console.log('is a cool number')
+// } else {
+//   console.log('Reload and try again')
+// }
 
-if (favourite !== 23) {
-  console.log('why not 23')
-}
+// if (favourite !== 23) {
+//   console.log('why not 23')
+// }
+
+const hasDriversLicense = true;
+const hasGoodVision = true;
+
+console.log(hasDriversLicense && hasGoodVision);
+console.log(hasGoodVision || hasDriversLicense);
+console.log(hasGoodVision || !hasDriversLicense);
+console.log(hasGoodVision && !hasDriversLicense);
+
+const isTired = false;
+
+const shouldDrive = hasDriversLicense && hasGoodVision && !isTired;
+
+shouldDrive ? console.log('Sara is able to drive') : console.log('someone else should drive')
