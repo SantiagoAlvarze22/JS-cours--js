@@ -435,20 +435,20 @@ Hints:
 § To calculate 20% of a value, simply multiply it by 20/100 = 0.2
 § Value X is between 50 and 300, if it's >= 50 && <= 300 �
 */
-let bills = 275;
-let value = bills >= 50 && bills <= 300;
+// let bills = 275;
+// let value = bills >= 50 && bills <= 300;
 
-let tip = value ? bills * 0.15 : bills * 0.2;
+// let tip = value ? bills * 0.15 : bills * 0.2;
 
-console.log(`The bill was $${bills}, the tip was $${tip} and the total value $${bills + tip}`)
+// console.log(`The bill was $${bills}, the tip was $${tip} and the total value $${bills + tip}`)
 
-bills = 40;
-value = bills >= 50 && bills <= 300
-tip = value ? bills * 0.15 : bills * 0.2;
+// bills = 40;
+// value = bills >= 50 && bills <= 300
+// tip = value ? bills * 0.15 : bills * 0.2;
 
-console.log(`The bill was $${bills}, the tip was $${tip} and the total value $${bills + tip}`)
+// console.log(`The bill was $${bills}, the tip was $${tip} and the total value $${bills + tip}`)
 
-bills = 430;
-value = bills >= 50 && bills <= 300
-tip = value ? bills * 0.15 : bills * 0.2;
-console.log(`The bill was $${bills}, the tip was $${tip} and the total value $${bills + tip}`)
+// bills = 430;
+// value = bills >= 50 && bills <= 300
+// tip = value ? bills * 0.15 : bills * 0.2;
+// console.log(`The bill was $${bills}, the tip was $${tip} and the total value $${bills + tip}`)
