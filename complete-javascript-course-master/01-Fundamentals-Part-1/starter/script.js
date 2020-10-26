@@ -165,42 +165,62 @@ Hint: Use an if/else statement �
 GOOD LUCK �
 */
 
-//Data 1
-const markMass = 78;
-const markHeight = 1.69;
-const johnMass = 92;
-const johnHeight = 1.95;
+// //Data 1
+// const markMass = 78;
+// const markHeight = 1.69;
+// const johnMass = 92;
+// const johnHeight = 1.95;
 
-//Data 2
-const markMass2 = 95;
-const markHeight2 = 1.88;
-const johnMass2 = 85;
-const johnHeight2 = 1.76;
+// //Data 2
+// const markMass2 = 95;
+// const markHeight2 = 1.88;
+// const johnMass2 = 85;
+// const johnHeight2 = 1.76;
 
 
-//BMI1
-const bmiM1 = markMass / (markHeight ** 2);
-const bmiJ1 = johnMass / (johnHeight ** 2);
+// //BMI1
+// const bmiM1 = markMass / (markHeight ** 2);
+// const bmiJ1 = johnMass / (johnHeight ** 2);
 
-//BMI2
+// //BMI2
 
-const bmiM2 = markMass2 / (markHeight2 ** 2);
-const bmiJ2 = johnMass2 / (johnHeight2 ** 2);
+// const bmiM2 = markMass2 / (markHeight2 ** 2);
+// const bmiJ2 = johnMass2 / (johnHeight2 ** 2);
 
-const markHigherBMI = bmiM1 > bmiJ1
-const markHigherBMI2 = bmiM2 > bmiJ2
+// const markHigherBMI = bmiM1 > bmiJ1
+// const markHigherBMI2 = bmiM2 > bmiJ2
 
-// console.log(bmiM1, bmiJ1, markHigherBMI)
+// // console.log(bmiM1, bmiJ1, markHigherBMI)
 
-if (bmiM1 > bmiJ1) {
-  console.log(`Mark's BMI ${bmiM1} is higher than jonh's BMI ${bmiJ1}`)
-} else {
-  console.log(`John's BMI ${bmiJ1} is higher than john's BM1 ${bmiJ1}`)
-}
+// if (bmiM1 > bmiJ1) {
+//   console.log(`Mark's BMI ${bmiM1} is higher than jonh's BMI ${bmiJ1}`)
+// } else {
+//   console.log(`John's BMI ${bmiJ1} is higher than john's BM1 ${bmiJ1}`)
+// }
 
-if (bmiM2 > bmiJ2) {
-  console.log(`Mark's BMI (${bmiM2}) is higher than jonh's BMI (${bmiJ2})`)
-} else {
-  console.log(`John's BMI (${bmiJ2}) is higher than john's BM1 (${bmiM2})`)
-}
+// if (bmiM2 > bmiJ2) {
+//   console.log(`Mark's BMI (${bmiM2}) is higher than jonh's BMI (${bmiJ2})`)
+// } else {
+//   console.log(`John's BMI (${bmiJ2}) is higher than john's BM1 (${bmiM2})`)
+// }
 // console.log(bmiM2, bmiJ2, markHigherBMI2)
+
+//type converstion
+const inputYear = '1991';
+console.log(Number(inputYear), inputYear)
+console.log(typeof (Number(inputYear) + 10)) //string //number
+
+console.log(String(23), 23)
+
+//type coercion
+
+console.log('hey' + 23 + 'hey')
+console.log('23' + '23')
+console.log('23' - '23' - 12)
+console.log('23' / '2')
+console.log('23' * '5')
+
+let n = '1' + 1; // '11'
+n = n - 1 // 10
+
+console.log(n)
