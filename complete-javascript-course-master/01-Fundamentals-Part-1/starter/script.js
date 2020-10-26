@@ -353,43 +353,65 @@ Test data:
 //   console.log(`No one won`)
 // }
 
-const day = 'hey';
+// const day = 'hey';
 
-switch (day) {
-  case 'monday':
-    console.log('Plan course structure');
-    break;
-  case 'tuesday':
-    console.log('do another thing');
-    break;
-  case 'wednesday':
-    console.log('hey another');
-    break;
-  case 'thursday':
-    console.log('stop for a while');
-    break;
-  case 'friday':
-    console.log('finish');
-    break;
-  case 'saturday':
-  case 'sunday':
-    console.log('Have fun in your weekend');
-    break;
-  default:
-    console.log('not a valid day');
+// switch (day) {
+//   case 'monday':
+//     console.log('Plan course structure');
+//     break;
+//   case 'tuesday':
+//     console.log('do another thing');
+//     break;
+//   case 'wednesday':
+//     console.log('hey another');
+//     break;
+//   case 'thursday':
+//     console.log('stop for a while');
+//     break;
+//   case 'friday':
+//     console.log('finish');
+//     break;
+//   case 'saturday':
+//   case 'sunday':
+//     console.log('Have fun in your weekend');
+//     break;
+//   default:
+//     console.log('not a valid day');
+// }
+
+// //challange 
+// if (day === 'monday') {
+//   console.log('Plan course structure');
+// } else if (day === 'tuesday') {
+//   console.log('do another thing');
+// } else if (day === 'wednesday') {
+//   console.log('hey another');
+// } else if (day === 'thursday') {
+//   console.log('stop for a while');
+// } else if (day === 'friday') {
+//   console.log('finish');
+// } else if (day === 'saturday' || day === 'sunday') {
+//   console.log('Have fun in your weekend');
+// } else { console.log('not a valid day'); }
+
+
+//ternary operator 
+
+const age = 20;
+
+// age >= 18 ? console.log('es mayor de edad') : console.log('no lo es');
+
+const drink = age >= 18 ? 'wine' : 'water';
+console.log(drink)
+
+let drink2;
+if (age >= 18) {
+  drink2 = 'wine';
+} else {
+  drink2 = 'water'
 }
 
-//challange 
-if (day === 'monday') {
-  console.log('Plan course structure');
-} else if (day === 'tuesday') {
-  console.log('do another thing');
-} else if (day === 'wednesday') {
-  console.log('hey another');
-} else if (day === 'thursday') {
-  console.log('stop for a while');
-} else if (day === 'friday') {
-  console.log('finish');
-} else if (day === 'saturday' || day === 'sunday') {
-  console.log('Have fun in your weekend');
-} else { console.log('not a valid day'); }
+console.log(drink2)
+
+//ternary operator is an expression because it returns a value
+console.log(`I want to drink ${age >= 18 ? 'wine' : 'water'}`)
