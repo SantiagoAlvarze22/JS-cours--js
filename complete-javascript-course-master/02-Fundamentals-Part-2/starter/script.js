@@ -227,20 +227,52 @@ the function you created before
 Test data: 125, 555 and 44 */
 
 
-const calcTip = function (billValue) {
-  if (billValue >= 50 && billValue <= 300) {
-    return billValue * 0.15;
-  } else {
-    return billValue * 0.20;
-  }
+// const calcTip = function (billValue) {
+//   if (billValue >= 50 && billValue <= 300) {
+//     return billValue * 0.15;
+//   } else {
+//     return billValue * 0.20;
+//   }
+// }
+
+// const tip = calcTip(100);
+// console.log(tip);
+
+// const bills = [125, 555, 44];
+// const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
+// console.log(tips);
+
+// const total = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
+// console.log(total);
+
+const jonas = {
+  firstName: 'Jonas',
+  lastName: 'Schmedtmann',
+  age: 2037 - 1991,
+  job: 'teacher',
+  friends: ['Michael', 'Peter', 'Steven']
 }
 
-const tip = calcTip(100);
-console.log(tip);
+console.log(jonas.age)
+console.log(jonas['job'])
 
-const bills = [125, 555, 44];
-const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
-console.log(tips);
+const nameKey = 'Name';
+console.log(jonas['first' + nameKey]);
+console.log(jonas['last' + nameKey]);
 
-const total = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
-console.log(total);
+// const interestedIn = prompt('what would you like to know??');
+// console.log(jonas[interestedIn])
+
+// if (jonas[interestedIn]) {
+//   console.log(jonas[interestedIn])
+// } else {
+//   console.log('Wrong Request')
+// }
+
+jonas.location = 'Portugal'
+jonas['twitter'] = '@saoalvarez'
+
+console.log(jonas)
+
+//challenge
+console.log(`${jonas.firstName} has ${jonas.friends.length} friends, and his best friend is ${jonas.friends[0]}`)
