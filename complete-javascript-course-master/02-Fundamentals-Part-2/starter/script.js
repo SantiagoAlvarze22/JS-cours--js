@@ -321,36 +321,40 @@ respective BMI. Example: "John's BMI (28.3) is higher than Mark's (23.9)!"
 Test data: Marks weights 78 kg and is 1.69 m tall. John weights 92 kg and is 1.95 m
 tall. */
 
-const mark = {
-  fullName: 'Mark Miller',
-  mass: 78,
-  height: 1.69,
-  calcBMI: function () {
-    this.BMI = this.mass / (this.height ** 2)
-    return this.BMI
-  }
-}
+// const mark = {
+//   fullName: 'Mark Miller',
+//   mass: 78,
+//   height: 1.69,
+//   calcBMI: function () {
+//     this.BMI = this.mass / (this.height ** 2)
+//     return this.BMI
+//   }
+// }
 
-const john = {
-  fullName: 'John Smith',
-  mass: 92,
-  height: 1.95,
-  calcBMI: function () {
-    this.BMI = this.mass / (this.height ** 2)
-    return this.BMI
-  }
-}
+// const john = {
+//   fullName: 'John Smith',
+//   mass: 92,
+//   height: 1.95,
+//   calcBMI: function () {
+//     this.BMI = this.mass / (this.height ** 2)
+//     return this.BMI
+//   }
+// }
 
 //I need to explecitely call the method and the new variable will be add
 
 
-john.calcBMI()
-console.log(john)
-mark.calcBMI()
-console.log(mark)
+// john.calcBMI()
+// console.log(john)
+// mark.calcBMI()
+// console.log(mark)
 
-if (mark.BMI > john.BMI) {
-  console.log(`${mark.fullName} BM (${mark.BMI}) is higher than ${john.fullName} (${john.BMI}) BMI`)
-} else {
-  console.log(`${john.fullName} BM (${john.BMI}) is higher than ${mark.fullName} (${mark.BMI}) BMI`)
+// if (mark.BMI > john.BMI) {
+//   console.log(`${mark.fullName} BM (${mark.BMI}) is higher than ${john.fullName} (${john.BMI}) BMI`)
+// } else {
+//   console.log(`${john.fullName} BM (${john.BMI}) is higher than ${mark.fullName} (${mark.BMI}) BMI`)
+// }
+
+for (let rep = 1; rep <= 10; rep++) {
+  console.log(`lifting weights repetition ${rep}`)
 }
