@@ -139,39 +139,73 @@ Test data:
 
 // checkWinner(averageD1Dolphins, averageD1Koalas)
 
+// const friends = ['Michael', 'Steven', 'Peter'];
+// console.log(friends)
+
+// const years1 = new Array(1991, 1984, 2008, 2020);
+// console.log(years1)
+
+// //show the last element
+// console.log(years1[years1.length - 1])
+
+// //position
+// console.log(friends[2])
+
+// //change the value in a position
+// friends[2] = 'Dave';
+// console.log(friends)
+
+// const firstName = 'Santi'
+// const santi = [firstName, 'Alvarez', 2037 - 1991, 'teacher', friends];
+// console.log(santi)
+// console.log(santi.length)
+
+// //exercise
+
+// const calcAge = function (birthYear) {
+//   return 2037 - birthYear;
+// }
+
+// const years = [1990, 1967, 2002, 2010, 2018];
+
+// const age1 = calcAge(years[0])
+// const age2 = calcAge(years[2])
+// const age3 = calcAge(years[years.length - 1])
+// console.log(age1, age2, age3)
+
+// const ages = [age1, age2, age3]
+// console.log(ages)
+
 const friends = ['Michael', 'Steven', 'Peter'];
 console.log(friends)
 
-const years1 = new Array(1991, 1984, 2008, 2020);
-console.log(years1)
+//Add element
+//push method 
+const newLength = friends.push('Jay')
+console.log(friends)
+console.log(newLength)
 
-//show the last element
-console.log(years1[years1.length - 1])
-
-//position
-console.log(friends[2])
-
-//change the value in a position
-friends[2] = 'Dave';
+//unshift
+friends.unshift('John')
 console.log(friends)
 
-const firstName = 'Santi'
-const santi = [firstName, 'Alvarez', 2037 - 1991, 'teacher', friends];
-console.log(santi)
-console.log(santi.length)
+//Remove elements
 
-//exercise
+//pop
 
-const calcAge = function (birthYear) {
-  return 2037 - birthYear;
+const popped = friends.pop(); //return the remove value
+console.log(popped)
+console.log(friends)
+
+//shift
+friends.shift()
+console.log(friends)
+
+console.log(friends.indexOf('Steven')) //index which the element is located
+console.log(friends.indexOf('blue')) //-1 bc does not exist
+
+console.log(friends.includes('Steven')); //return a Boolean
+
+if (friends.includes('Steven')) {
+  console.log('call Steven')
 }
-
-const years = [1990, 1967, 2002, 2010, 2018];
-
-const age1 = calcAge(years[0])
-const age2 = calcAge(years[2])
-const age3 = calcAge(years[years.length - 1])
-console.log(age1, age2, age3)
-
-const ages = [age1, age2, age3]
-console.log(ages)
