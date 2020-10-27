@@ -245,34 +245,64 @@ Test data: 125, 555 and 44 */
 // const total = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
 // console.log(total);
 
+
+
+// console.log(jonas.age)
+// console.log(jonas['job'])
+
+// const nameKey = 'Name';
+// console.log(jonas['first' + nameKey]);
+// console.log(jonas['last' + nameKey]);
+
+// // const interestedIn = prompt('what would you like to know??');
+// // console.log(jonas[interestedIn])
+
+// // if (jonas[interestedIn]) {
+// //   console.log(jonas[interestedIn])
+// // } else {
+// //   console.log('Wrong Request')
+// // }
+
+// jonas.location = 'Portugal'
+// jonas['twitter'] = '@saoalvarez'
+
+// console.log(jonas)
+
+// //challenge
+// console.log(`${jonas.firstName} has ${jonas.friends.length} friends, and his best friend is ${jonas.friends[0]}`)
+
+
 const jonas = {
   firstName: 'Jonas',
   lastName: 'Schmedtmann',
-  age: 2037 - 1991,
+  birthYear: 1991,
   job: 'teacher',
-  friends: ['Michael', 'Peter', 'Steven']
+  friends: ['Michael', 'Peter', 'Steven'],
+  hasDriversLicense: true,
+
+  // calcAge: function (birthYear) {
+  //   return 2017 - birthYear;
+  // }
+
+  // calcAge: function () {
+  //   // console.log(this)
+  //   return 2037 - this.birthYear;
+  // }
+
+  calcAge: function () {
+    //creating a new property in the object
+    this.age = 2037 - this.birthYear;
+    return this.age
+  },
+
+  getSummary: function () {
+    return `${this.firstName} is a ${this.calcAge()} old ${this.job}, and he ${this.hasDriversLicense ? 'has' : 'does not have'} a driver's license`
+  }
 }
 
+
 console.log(jonas.age)
-console.log(jonas['job'])
 
-const nameKey = 'Name';
-console.log(jonas['first' + nameKey]);
-console.log(jonas['last' + nameKey]);
+// console.log(jonas['calcAge']());
+console.log(jonas.getSummary())
 
-// const interestedIn = prompt('what would you like to know??');
-// console.log(jonas[interestedIn])
-
-// if (jonas[interestedIn]) {
-//   console.log(jonas[interestedIn])
-// } else {
-//   console.log('Wrong Request')
-// }
-
-jonas.location = 'Portugal'
-jonas['twitter'] = '@saoalvarez'
-
-console.log(jonas)
-
-//challenge
-console.log(`${jonas.firstName} has ${jonas.friends.length} friends, and his best friend is ${jonas.friends[0]}`)
