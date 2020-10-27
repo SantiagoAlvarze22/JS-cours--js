@@ -118,23 +118,60 @@ Test data:
 § Data 1: Dolphins score 44, 23 and 71. Koalas score 65, 54 and 49
 § Data 2: Dolphins score 85, 54 and 41. Koalas score 23, 34 and 27 */
 
-const calcAverage = (sc1, sc2, sc3) => (sc1 + sc2 + sc3) / 3
+// const calcAverage = (sc1, sc2, sc3) => (sc1 + sc2 + sc3) / 3
 
-const averageD1Dolphins = calcAverage(44, 23, 71);
-const averageD1Koalas = calcAverage(65, 54, 49);
+// const averageD1Dolphins = calcAverage(44, 23, 71);
+// const averageD1Koalas = calcAverage(65, 54, 49);
 
-const averageD2Dolphins = calcAverage(85, 54, 41);
-const averageD2Koalas = calcAverage(23, 34, 27);
+// const averageD2Dolphins = calcAverage(85, 54, 41);
+// const averageD2Koalas = calcAverage(23, 34, 27);
 
-function checkWinner(avgDolhins, avgKoalas) {
-  console.log(avgDolhins, avgKoalas)
-  if (avgDolhins > (2 * avgKoalas)) {
-    console.log(`Dolphins win (${avgDolhins} vs ${avgKoalas})`)
-  } else if (avgKoalas > (2 * avgDolhins)) {
-    console.log(`Kolas win (${avgKoalas} vs ${avgDolhins})`)
-  } else {
-    console.log('No one Win!!!')
-  }
+// function checkWinner(avgDolhins, avgKoalas) {
+//   console.log(avgDolhins, avgKoalas)
+//   if (avgDolhins > (2 * avgKoalas)) {
+//     console.log(`Dolphins win (${avgDolhins} vs ${avgKoalas})`)
+//   } else if (avgKoalas > (2 * avgDolhins)) {
+//     console.log(`Kolas win (${avgKoalas} vs ${avgDolhins})`)
+//   } else {
+//     console.log('No one Win!!!')
+//   }
+// }
+
+// checkWinner(averageD1Dolphins, averageD1Koalas)
+
+const friends = ['Michael', 'Steven', 'Peter'];
+console.log(friends)
+
+const years1 = new Array(1991, 1984, 2008, 2020);
+console.log(years1)
+
+//show the last element
+console.log(years1[years1.length - 1])
+
+//position
+console.log(friends[2])
+
+//change the value in a position
+friends[2] = 'Dave';
+console.log(friends)
+
+const firstName = 'Santi'
+const santi = [firstName, 'Alvarez', 2037 - 1991, 'teacher', friends];
+console.log(santi)
+console.log(santi.length)
+
+//exercise
+
+const calcAge = function (birthYear) {
+  return 2037 - birthYear;
 }
 
-checkWinner(averageD1Dolphins, averageD1Koalas)
+const years = [1990, 1967, 2002, 2010, 2018];
+
+const age1 = calcAge(years[0])
+const age2 = calcAge(years[2])
+const age3 = calcAge(years[years.length - 1])
+console.log(age1, age2, age3)
+
+const ages = [age1, age2, age3]
+console.log(ages)
