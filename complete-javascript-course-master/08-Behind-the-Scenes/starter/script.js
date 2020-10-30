@@ -77,29 +77,50 @@ const z = 3;
 // console.log(x === window.x);
 // console.log(y === window.y);
 // console.log(z === window.z);
-console.log(this);
-console.log('------con function expression-----');
+// console.log(this);
+// console.log('------con function expression-----');
 
-const calcAge = function (birthYear) {
-  console.log(2037 - birthYear);
-  console.log('this ------' + this);
+// const calcAge = function (birthYear) {
+//   console.log(2037 - birthYear);
+//   console.log('this ------' + this);
+// };
+
+// calcAge(23);
+
+// console.log('----con array function-----');
+// const calcAge2 = saludo => {
+//   console.log(saludo);
+//   console.log('this ------' + this);
+//   console.log(this);
+// };
+
+// calcAge2('Hye');
+
+// console.log('------con function declaration-----');
+// function greet(saludo) {
+//   console.log(saludo);
+//   console.log('this ------' + this);
+// }
+
+// greet('hey soy saludo function declaration');
+
+const jonas = {
+  year: 1991,
+  calcAge: function () {
+    console.log(this);
+    console.log(2037 - this.year);
+  },
 };
 
-calcAge(23);
+// jonas.calcAge();
 
-console.log('----con array function-----');
-const calcAge2 = saludo => {
-  console.log(saludo);
-  console.log('this ------' + this);
-  console.log(this);
+const matilda = {
+  year: 2017,
 };
 
-calcAge2('Hye');
+matilda.calcAge = jonas.calcAge;
+matilda.calcAge();
 
-console.log('------con function declaration-----');
-function greet(saludo) {
-  console.log(saludo);
-  console.log('this ------' + this);
-}
-
-greet('hey soy saludo function declaration');
+//copia la funcion pero cuando realiza la consulta dentro de ella seria que hiciera la consulta al nuevo objeto, pero como no hay un nuevo objeto sino una nueva funcion entonces por eso hay error
+const f = jonas.calcAge;
+f();
