@@ -29,4 +29,51 @@ function calcAge(birthYear) {
 }
 
 const firstName = 'Jonas';
-calcAge(1991);
+// calcAge(1991);
+
+//Hoisting
+// console.log(me);
+// console.log(job);
+// console.log(year);
+
+var me = 'Jonas';
+let job = 'teacher';
+const year = 1991;
+
+//functions
+
+// console.log(addDecl(2, 5));
+// console.log(addExpr(3, 5));
+// console.log(addArrow(23, 8));
+
+function addDecl(a, b) {
+  return a + b;
+}
+
+const addExpr = function (a, b) {
+  return a + b;
+};
+
+const addArrow = (a, b) => a + b;
+
+//example
+console.log(numProducts);
+
+if (!numProducts) deleteShoppingCart();
+
+var numProducts = 10;
+
+function deleteShoppingCart() {
+  console.log('All Products deleted');
+}
+
+//Var creating new property in teh object model
+
+var x = 1;
+
+let y = 2;
+const z = 3;
+
+console.log(x === window.x);
+console.log(y === window.y);
+console.log(z === window.z);
