@@ -1,6 +1,6 @@
 'use strict';
 
-function calcAge(birthYear) {
+function calcAge1(birthYear) {
   const age = 2037 - birthYear;
 
   function printAge() {
@@ -57,9 +57,9 @@ const addExpr = function (a, b) {
 const addArrow = (a, b) => a + b;
 
 //example
-console.log(numProducts);
+// console.log(numProducts);
 
-if (!numProducts) deleteShoppingCart();
+// if (!numProducts) deleteShoppingCart();
 
 var numProducts = 10;
 
@@ -74,6 +74,32 @@ var x = 1;
 let y = 2;
 const z = 3;
 
-console.log(x === window.x);
-console.log(y === window.y);
-console.log(z === window.z);
+// console.log(x === window.x);
+// console.log(y === window.y);
+// console.log(z === window.z);
+console.log(this);
+console.log('------con function expression-----');
+
+const calcAge = function (birthYear) {
+  console.log(2037 - birthYear);
+  console.log('this ------' + this);
+};
+
+calcAge(23);
+
+console.log('----con array function-----');
+const calcAge2 = saludo => {
+  console.log(saludo);
+  console.log('this ------' + this);
+  console.log(this);
+};
+
+calcAge2('Hye');
+
+console.log('------con function declaration-----');
+function greet(saludo) {
+  console.log(saludo);
+  console.log('this ------' + this);
+}
+
+greet('hey soy saludo function declaration');
