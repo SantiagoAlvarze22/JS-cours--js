@@ -162,7 +162,7 @@ const addExpr = function (a, b) {
   return a + b;
 };
 
-addExpr(2, 5);
+// addExpr(2, 5);
 // addExpr(2, 5, 8, 12);
 
 var addArrow = (a, b) => {
@@ -183,8 +183,8 @@ function addArrow1(a, b) {
 let age = 30;
 let oldAge = age;
 age = 31;
-console.log(age);
-console.log(oldAge);
+// console.log(age);
+// console.log(oldAge);
 
 const me = {
   name: 'jonas',
@@ -194,5 +194,57 @@ const me = {
 const friend = me;
 friend.age = 27;
 
-console.log('Friend: ', friend);
-console.log('Me', me);
+// console.log('Friend: ', friend);
+// console.log('Me', me);
+
+//primitive types
+let lastName = 'Williams';
+let oldLastName = lastName;
+lastName = 'David';
+console.log(lastName, oldLastName);
+
+//refernce types
+const jessica = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+};
+
+//copying the reference that would point to the same object in the heap
+//marriedJessica is not a new object is just a variable that reference an object (in call stack) that is store in the heap (having the same memory address)
+const marriedJessica = jessica;
+marriedJessica.lastName = 'Davis';
+
+console.log('before mariage: ', jessica);
+console.log('After marriage: ', marriedJessica);
+
+// marriedJessica = {}; if I want to change the value of the marriedJessica object I can not do it with the const keywords it can be just change whether is declare with 'let', however I'll be changing in the call stack and not in the heap where is store the object, one thing is change a property, another one is changing the whole value of the property
+
+//copying objects
+const jessica2 = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+  family: ['Anne', 'Bob', 'Glen'],
+};
+
+//object.assign just work with the first level, in case that I have an inner object in that object, the object is going to be the same, and it creates a shallow copy (select all the copies in the first level) and not a deep clone
+const jessicaCopy = Object.assign({}, jessica2);
+jessicaCopy.lastName = 'Davis';
+jessicaCopy.family.push('mary', 'Jonh');
+
+console.log(jessica2, jessicaCopy);
+
+const jessica3 = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+  family: ['Anne', 'Bob', 'Glen'],
+};
+
+//a new object was created in the heap and now jessicacopy1 is pointing to that object
+const jessicacopy1 = { ...jessica3 };
+jessicacopy1.lastName = 'Alvarez';
+jessicacopy1.family.push('mary', 'Jonh');
+
+console.log(jessica3, jessicacopy1);
