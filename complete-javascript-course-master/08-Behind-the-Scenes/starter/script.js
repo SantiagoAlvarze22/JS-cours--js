@@ -36,7 +36,7 @@ const firstName = 'Jonas';
 // console.log(job);
 // console.log(year);
 
-var me = 'Jonas';
+// var me = 'Jonas';
 let job = 'teacher';
 const year = 1991;
 
@@ -154,8 +154,8 @@ const jonas = {
   },
 };
 
-jonas.greet();
-jonas.calcAge();
+// jonas.greet();
+// jonas.calcAge();
 
 const addExpr = function (a, b) {
   console.log(arguments);
@@ -163,18 +163,36 @@ const addExpr = function (a, b) {
 };
 
 addExpr(2, 5);
-addExpr(2, 5, 8, 12);
+// addExpr(2, 5, 8, 12);
 
 var addArrow = (a, b) => {
   console.log(arguments);
   return a + b;
 };
 
-addArrow(2, 5, 6);
+// addArrow(2, 5, 6);
 
 function addArrow1(a, b) {
   console.log(arguments);
   return a + b;
 }
 
-addArrow1(2, 5, 6);
+// addArrow1(2, 5, 6);
+
+//Primitive vs objects
+let age = 30;
+let oldAge = age;
+age = 31;
+console.log(age);
+console.log(oldAge);
+
+const me = {
+  name: 'jonas',
+  age: 30,
+};
+
+const friend = me;
+friend.age = 27;
+
+console.log('Friend: ', friend);
+console.log('Me', me);
