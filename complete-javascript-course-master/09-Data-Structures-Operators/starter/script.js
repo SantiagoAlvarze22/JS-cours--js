@@ -40,6 +40,11 @@ const restaurant = {
   orderPasta: function (ing1, ing2, ing3) {
     console.log(`Here is your delicious pasta ${ing1}, ${ing2}, ${ing3}`);
   },
+
+  orderPizza: function (mainIngridient, ...othersIngredients) {
+    console.log(mainIngridient);
+    console.log(othersIngredients);
+  },
 };
 
 //Spread operator
@@ -73,13 +78,47 @@ const letters = [...str, '', 'S.'];
 //objects
 
 const newRestaurant = { founderIn: 1988, ...restaurant, founder: 'guiseepe' };
-console.log(newRestaurant);
+// console.log(newRestaurant);
 
 const restaurantCopy = { ...restaurant };
 restaurantCopy.name = 'Ristourante Roma';
-console.log(restaurantCopy.name);
-console.log(restaurant.name);
+// console.log(restaurantCopy.name);
+// console.log(restaurant.name);
 
+//rest operator
+const arr2 = [1, 2, ...[3, 4]];
+
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+// console.log(a, b, others);
+
+const [pizza, , rissotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+// console.log(pizza, rissotto, otherFood);
+
+//object, the remaining object would be store in an object
+const { sat, ...weeksdays } = restaurant.openingHours;
+// console.log(sat, weeksdays);
+
+//2) Functions
+const add = function (...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+  }
+  console.log(sum);
+};
+
+add(2, 3);
+add(5, 3, 7, 3);
+add(1, 24, 5, 67, 423, 24, 7, 8, 8);
+
+const y = [1, 23, 5, 6];
+add(...y);
+
+restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
+restaurant.orderPizza('mushrooms');
 // restaurant.orderDelivery({
 //   time: '22:30',
 //   address: 'Via del sole, 21',
@@ -113,12 +152,12 @@ const { menu = [], starterMenu: starters = [] } = restaurant;
 // console.log(menu, starters);
 
 //Mutatin variables
-let a = 111;
-let b = 999;
+// let a = 111;
+// let b = 999;
 const obj = { a: 23, b: 7, c: 14 };
 
 //if I set a curly braces at the beginning of a line, JS would be expecting a block of code however if I am destructuring an object I just have to sorund them with parenthesis
-({ a, b } = obj);
+// ({ a, b } = obj);
 // console.log(a, b);
 
 //nested objects
@@ -133,7 +172,7 @@ const arr1 = [2, 3, 4];
 // const b = arr[1];
 // const c = arr[2];
 
-const [x, y, z] = arr;
+// const [x, y, z] = arr;
 // console.log(x, y, z);
 
 let [main, second] = restaurant.categories;
