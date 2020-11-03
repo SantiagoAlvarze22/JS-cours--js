@@ -47,6 +47,37 @@ const restaurant = {
   },
 };
 
+//USE ANY DATA Type, return any data type, short-circuiting
+// console.log(3 || 'jonas');
+// console.log('' || 'jonas');
+// console.log(true || 0);
+// console.log(undefined || null);
+// console.log(true && 0);
+
+restaurant.numGuess = 20;
+// const guests1 = restaurant.numGuess ? restaurant.numGuess : 10;
+// console.log(guests1);
+// console.log(restaurant);
+
+restaurant.numGuess = 10;
+const guests2 = restaurant.numGuess || 10;
+console.log(guests2);
+
+//Nullish: null and undefined(NOT 0 or '')
+const guestsCorrect = restaurant.numGuess ?? 10;
+console.log(guestsCorrect);
+
+// console.log(0 && 'jonas'); //when the first value is falsy will be returning that value inmmediately (it doesn't matter if it is not the first one value, it must be the first value in de line)
+
+// console.log('Hello' && 23 && null && 'jonas'); //would be null is the first falsy value
+
+//practical example
+// if (restaurant.orderPizza) {
+//   restaurant.orderPizza('mushrooms', 'spinach');
+// }
+
+// restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+
 //Spread operator
 const arr = [7, 8, 9];
 const newArr = [1, 2, ...arr];
@@ -110,15 +141,15 @@ const add = function (...numbers) {
   console.log(sum);
 };
 
-add(2, 3);
-add(5, 3, 7, 3);
-add(1, 24, 5, 67, 423, 24, 7, 8, 8);
+// add(2, 3);
+// add(5, 3, 7, 3);
+// add(1, 24, 5, 67, 423, 24, 7, 8, 8);
 
 const y = [1, 23, 5, 6];
-add(...y);
+// add(...y);
 
-restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
-restaurant.orderPizza('mushrooms');
+// restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
+// restaurant.orderPizza('mushrooms');
 // restaurant.orderDelivery({
 //   time: '22:30',
 //   address: 'Via del sole, 21',
