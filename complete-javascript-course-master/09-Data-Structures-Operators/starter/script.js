@@ -36,21 +36,63 @@ const restaurant = {
       close: 24,
     },
   },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(`Here is your delicious pasta ${ing1}, ${ing2}, ${ing3}`);
+  },
 };
 
-restaurant.orderDelivery({
-  time: '22:30',
-  address: 'Via del sole, 21',
-  mainIndex: 2,
-  starterIndex: 2,
-});
+//Spread operator
+const arr = [7, 8, 9];
+const newArr = [1, 2, ...arr];
+// console.log(newArr);
 
-restaurant.orderDelivery({
-  // time: '22:30',
-  address: 'Via del sole, 21',
-  // mainIndex: 2,
-  // starterIndex: 2,
-});
+const newMenu = [...restaurant.mainMenu, 'gNOCCI'];
+// console.log(newMenu);
+
+const mainMenuCopy = [...restaurant.mainMenu];
+
+//Join 2 arrays
+const menuarr = [...restaurant.starterMenu, ...mainMenuCopy];
+// console.log(menuarr);
+
+//iterables: arrays, strings, maps, sets. NOT OBJECTS
+const str = 'Jonas';
+const letters = [...str, '', 'S.'];
+// console.log(letters);
+
+//real world example
+// const ingredients = [
+//   prompt("let's make pasta Ingredient 1?"),
+//   prompt('Ingredient 2?'),
+//   prompt('Ingredient 3?'),
+// ];
+
+// restaurant.orderPasta(...ingredients);
+
+//objects
+
+const newRestaurant = { founderIn: 1988, ...restaurant, founder: 'guiseepe' };
+console.log(newRestaurant);
+
+const restaurantCopy = { ...restaurant };
+restaurantCopy.name = 'Ristourante Roma';
+console.log(restaurantCopy.name);
+console.log(restaurant.name);
+
+// restaurant.orderDelivery({
+//   time: '22:30',
+//   address: 'Via del sole, 21',
+//   mainIndex: 2,
+//   starterIndex: 2,
+// });
+
+// restaurant.orderDelivery({
+//   // time: '22:30',
+//   address: 'Via del sole, 21',
+//   // mainIndex: 2,
+//   // starterIndex: 2,
+// });
 
 //destructuring objects
 
@@ -86,7 +128,7 @@ const {
 // console.log(o, c);
 
 //destructuring arrays
-const arr = [2, 3, 4];
+const arr1 = [2, 3, 4];
 // const a = arr[0];
 // const b = arr[1];
 // const c = arr[2];
