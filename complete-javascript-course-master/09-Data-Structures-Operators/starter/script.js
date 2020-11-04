@@ -65,26 +65,49 @@ const restaurant = {
   },
 };
 
+//looping object, values, entries and okject keys
+const properties = Object.keys(openingHours1);
+console.log(properties);
+
+let openStr = `We are open on ${properties.length} days: `;
+for (const day of properties) {
+  openStr += `${day}, `;
+}
+
+console.log(openStr);
+
+//property values
+const values = Object.values(openingHours1);
+console.log(values);
+
+//entire object
+const entries = Object.entries(openingHours1);
+console.log(entries);
+
+for (const [key, { open, close }] of entries) {
+  console.log(`On ${key} we open at ${open} and close at ${close}`);
+}
+
 if (restaurant.openingHours && restaurant.openingHours.mon) {
   console.log(restaurant.openingHours.mon.open);
 }
 
 //with optional chaining
-console.log(restaurant.openingHours.mon?.open);
+// console.log(restaurant.openingHours.mon?.open);
 
 const days = ['mon', 'tues', 'wed', 'thu', 'fri', 'sat', 'sund'];
 
-for (const day of days) {
-  console.log(day);
-  const open = restaurant.openingHours[day]?.open ?? 'close';
-  console.log(`On ${day}, we open at ${open}`);
-}
+// for (const day of days) {
+//   console.log(day);
+//   const open = restaurant.openingHours[day]?.open ?? 'close';
+//   console.log(`On ${day}, we open at ${open}`);
+// }
 
 //methods
-console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
+// console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
 
 //Method that it doesnt exist
-console.log(restaurant.orderRisotto?.(0, 1) ?? 'Method does not exist');
+// console.log(restaurant.orderRisotto?.(0, 1) ?? 'Method does not exist');
 
 //arrays
 const users = [
@@ -94,7 +117,7 @@ const users = [
   },
 ];
 
-console.log(users[0]?.name ?? 'User array empty');
+// console.log(users[0]?.name ?? 'User array empty');
 
 //USE ANY DATA Type, return any data type, short-circuiting
 // console.log(3 || 'jonas');
