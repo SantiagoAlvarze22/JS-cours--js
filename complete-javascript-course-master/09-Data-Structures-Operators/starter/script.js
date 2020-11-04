@@ -236,6 +236,16 @@ const [i, , [j, k]] = nested;
 const [p, q, r] = [8, 9];
 // console.log(p, q, r);
 
+//for of loop
+
+const menu1 = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+// for (const item of menu1) console.log(item);
+for (const [i, el] of menu1.entries()) {
+  console.log(`${i + 1}: ${el}`);
+}
+
+console.log([...menu1.entries()]);
 /*Coding Challenge #1
 We're building a football betting app (soccer for my American friends �)!
 Suppose we get data from a web service about a certain game ('game' variable on
@@ -329,8 +339,8 @@ const {
 
 //team most likely to win
 // console.log(team1, team2);
-team1 < team2 && console.log('The team 1 is most likely to win');
-team1 > team2 && console.log('The team2 is most likely to win');
+// team1 < team2 && console.log('The team 1 is most likely to win');
+// team1 > team2 && console.log('The team2 is most likely to win');
 
 // console.log(team1, draw, team2);
 
