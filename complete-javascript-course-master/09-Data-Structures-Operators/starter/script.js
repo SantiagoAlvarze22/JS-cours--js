@@ -74,6 +74,37 @@ const ordersSet = new Set([
   'pizza',
 ]);
 
+//MAP iteration
+const question = new Map([
+  ['question', 'What is the best programming language in the world?'],
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'JavaScript'],
+  ['correct', 3],
+  [true, 'Correct'],
+  [false, 'Try Again'],
+]);
+
+console.log(question);
+
+//convert objects to map
+console.log(Object.entries(openingHours1));
+const hoursMap = new Map(Object.entries(openingHours1));
+console.log(hoursMap);
+
+for (const [key, value] of question) {
+  if (typeof key === 'number') console.log(`Answer ${key} : ${value}`);
+}
+
+// const answer = Number(prompt('Your answer'));
+
+// console.log(question.get(answer === 1 || answer === 2 || answer === 3));
+// console.log(question.get(question.get('correct') === answer));
+// console.log(answer);1
+
+//Coverting a map to an array
+console.log([...question]);
+
 //SET
 // console.log(ordersSet);
 // console.log(new Set('Jonas'));
@@ -87,7 +118,7 @@ const ordersSet = new Set([
 const rest = new Map();
 rest.set('name', 'Classico Italiano');
 rest.set(1, 'Firenze, italy');
-console.log(rest.set(2, 'Libos, portugal'));
+// console.log(rest.set(2, 'Libos, portugal'));
 
 rest
   .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
@@ -95,22 +126,22 @@ rest
   .set('close', 23)
   .set(true, 'We are open')
   .set(false, 'We are closed');
-console.log(rest);
-console.log(rest.get('name'));
-console.log(rest.get(true));
+// console.log(rest);
+// console.log(rest.get('name'));
+// console.log(rest.get(true));
 
 const time = 21;
-console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+// console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
 
-console.log(rest.has('categories'));
+// console.log(rest.has('categories'));
 rest.delete(2);
-console.log(rest);
-console.log(rest.size);
+// console.log(rest);
+// console.log(rest.size);
 
 const arr3 = [1, 2];
 rest.set(arr3, 'Test');
 rest.set(document.querySelector('h1'), 'Heading');
-console.log(rest.get(arr3));
+// console.log(rest.get(arr3));
 
 // for (const order of ordersSet) console.log(order);
 
