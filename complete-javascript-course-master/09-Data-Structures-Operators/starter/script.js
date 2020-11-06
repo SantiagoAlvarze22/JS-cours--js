@@ -65,6 +65,37 @@ const restaurant = {
   },
 };
 
+const ordersSet = new Set([
+  'pasta',
+  'pizza',
+  'pizza',
+  'risotto',
+  'pasta',
+  'pizza',
+]);
+
+console.log(ordersSet);
+console.log(new Set('Jonas'));
+console.log(ordersSet.has('Pizza'));
+ordersSet.add('Garlic Bread');
+ordersSet.delete('risotto');
+// ordersSet.clear(); delete all the values in the set
+console.log(ordersSet);
+
+for (const order of ordersSet) console.log(order);
+
+//example
+const staff = ['waiter', 'chef', 'waiter', 'manager', 'chef', 'waiter'];
+//converting the array in a SEt
+//a new array with no the repeating values
+const staffUnique = [...new Set(staff)];
+console.log(staffUnique);
+console.log(
+  new Set(['waiter', 'chef', 'waiter', 'manager', 'chef', 'waiter']).size
+);
+
+console.log(new Set('Santiago'));
+
 //looping object, values, entries and okject keys
 const properties = Object.keys(openingHours1);
 // console.log(properties);
@@ -432,9 +463,9 @@ const printGoals = (...nameOfPlayers) => {
       console.log(`${nameOfPlayers[i]}: 0`);
     }
   }
-  console.log(
-    `according to the score array, and comparing with the name of the players this is the real amount of goals ${sum}`
-  );
+  // // console.log(
+  //   `according to the score array, and comparing with the name of the players this is the real amount of goals ${sum}`
+  // );
 };
 
 // printGoals('Davies', 'Muller', 'Lewandowski', 'Kimmich');
@@ -511,19 +542,19 @@ const scoredgame = Object.entries(game.scored);
 // console.log(scoredgame);
 
 for (let [key, name] of scoredgame) {
-  console.log(`Goal ${Number(key) + 1} : ${name}`);
+  // console.log(`Goal ${Number(key) + 1} : ${name}`);
 }
 
 //2
 const odds = Object.values(game.odds);
-console.log(odds.length);
+// console.log(odds.length);
 
 let sum = 0;
 for (let odd of odds) {
   sum += odd;
 }
 
-console.log(`The average of the odds is ${sum / odds.length}`);
+// console.log(`The average of the odds is ${sum / odds.length}`);
 
 //3
 const {
@@ -533,26 +564,26 @@ const {
 //[team1 = game.team1, x = draw, team2 = game.team2]
 
 const theOdds = Object.entries(game.odds);
-console.log(theOdds);
+// console.log(theOdds);
 
 // const [nameteam1, nameteam2, ...restArr] = game;
 
 for (let [team, value] of theOdds) {
   const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
-  console.log(`Odd of ${teamStr} ...${value}`);
+  // console.log(`Odd of ${teamStr} ...${value}`);
 }
 
 //4
 
 const nameScored = Object.entries(game.scored);
-console.log(nameScored);
+// console.log(nameScored);
 
 let scorers;
 
 for (const [key, names] of nameScored) {
   for (let i = 0; i < nameScored.length - 3; i++) {
     // scorers = { [names]: Number(key) };
-    console.log(`${[names]}: ${Number(key) + 1}`);
+    // console.log(`${[names]}: ${Number(key) + 1}`);
   }
 }
-console.log(scorers);
+// console.log(scorers);
