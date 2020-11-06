@@ -74,27 +74,57 @@ const ordersSet = new Set([
   'pizza',
 ]);
 
-console.log(ordersSet);
-console.log(new Set('Jonas'));
-console.log(ordersSet.has('Pizza'));
-ordersSet.add('Garlic Bread');
-ordersSet.delete('risotto');
-// ordersSet.clear(); delete all the values in the set
-console.log(ordersSet);
+//SET
+// console.log(ordersSet);
+// console.log(new Set('Jonas'));
+// console.log(ordersSet.has('Pizza'));
+// ordersSet.add('Garlic Bread');
+// ordersSet.delete('risotto');
+// // ordersSet.clear(); delete all the values in the set
+// console.log(ordersSet);
 
-for (const order of ordersSet) console.log(order);
+//MAP
+const rest = new Map();
+rest.set('name', 'Classico Italiano');
+rest.set(1, 'Firenze, italy');
+console.log(rest.set(2, 'Libos, portugal'));
+
+rest
+  .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+  .set('open', 11)
+  .set('close', 23)
+  .set(true, 'We are open')
+  .set(false, 'We are closed');
+console.log(rest);
+console.log(rest.get('name'));
+console.log(rest.get(true));
+
+const time = 21;
+console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+
+console.log(rest.has('categories'));
+rest.delete(2);
+console.log(rest);
+console.log(rest.size);
+
+const arr3 = [1, 2];
+rest.set(arr3, 'Test');
+rest.set(document.querySelector('h1'), 'Heading');
+console.log(rest.get(arr3));
+
+// for (const order of ordersSet) console.log(order);
 
 //example
 const staff = ['waiter', 'chef', 'waiter', 'manager', 'chef', 'waiter'];
 //converting the array in a SEt
 //a new array with no the repeating values
 const staffUnique = [...new Set(staff)];
-console.log(staffUnique);
-console.log(
-  new Set(['waiter', 'chef', 'waiter', 'manager', 'chef', 'waiter']).size
-);
+// console.log(staffUnique);
+// console.log(
+//   new Set(['waiter', 'chef', 'waiter', 'manager', 'chef', 'waiter']).size
+// );
 
-console.log(new Set('Santiago'));
+// console.log(new Set('Santiago'));
 
 //looping object, values, entries and okject keys
 const properties = Object.keys(openingHours1);
