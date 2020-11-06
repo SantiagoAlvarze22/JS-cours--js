@@ -550,7 +550,7 @@ console.log(nameScored);
 let scorers;
 
 for (const [key, names] of nameScored) {
-  for (let i = 0; i < nameScored.length; i++) {
+  for (let i = 0; i < nameScored.length - 3; i++) {
     // scorers = { [names]: Number(key) };
     console.log(`${[names]}: ${Number(key) + 1}`);
   }
