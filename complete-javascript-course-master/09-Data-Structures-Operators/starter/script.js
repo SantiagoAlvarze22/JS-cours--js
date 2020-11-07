@@ -839,6 +839,20 @@ const passanger = 'jessica ann smith davis';
 
 capitalizeName(passanger);
 
+//insertar al final de cada palabra una coma
+
+const commafun = function (word) {
+  const words = word.split(' ');
+  const wordsarr = [];
+
+  for (const w of words) {
+    wordsarr.push(w);
+  }
+  console.log(wordsarr.join(', '));
+};
+
+console.log(commafun('hola como vas que haces ando aburrido'));
+
 // console.log('hola'.split().join(' '));
 
 //padding string--> add a number of character to the string, until the string has a certain desire length
