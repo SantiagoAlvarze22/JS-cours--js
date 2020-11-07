@@ -690,18 +690,62 @@ gameEvents.delete(64);
 
 //3
 
-console.log(`An event happend every ${90 / gameEvents.size} hours`);
+// console.log(`An event happend every ${90 / gameEvents.size} hours`);
 
 const realTime = [...gameEvents.keys()].pop();
 
-console.log(
-  `The real time for every game event is ${realTime / gameEvents.size} minutes`
-);
+// console.log(
+//   `The real time for every game event is ${realTime / gameEvents.size} minutes`
+// );
 
 const everyEl = gameEvents.entries();
 
 for (let [key, value] of everyEl) {
-  key <= 45
-    ? console.log(`[First HALF]${key}:${value}`)
-    : console.log(`[Second HALF]${key}:${value}`);
+  key <= 45;
+  // ? console.log(`[First HALF]${key}:${value}`)
+  // : console.log(`[Second HALF]${key}:${value}`);
 }
+
+const airline = 'Tap Air Portugal';
+const plane = 'A320';
+
+console.log(plane[0]);
+
+console.log('Hola'.length);
+
+//strings has methods
+
+console.log(airline.indexOf('r')); //position of the letter, it returns -1 if the letter doesn't not exist, is case sentitve
+console.log(airline.lastIndexOf('o'));
+
+console.log(airline.slice(4)); //position where the extraction will start and then it would take the other one
+
+console.log(airline.slice(4, 7)); //starts in the 5 position and finish in the 7 one.
+
+console.log(airline.slice(0, airline.indexOf(' '))); //is going to take the first word until the speace for the second word
+console.log(airline.slice(airline.lastIndexOf(' ') + 1)); //it takes de las word, after the last space
+
+console.log(airline.slice(-2)); // tomará las palabras desde el final de la frase y solo va a tomar dos caracteres
+
+console.log(airline.slice(1, -1)); //it takes the first paramente and the las parameter of the string
+
+const checkMiddleSeat = function (seat) {
+  //B and E are middle seats
+  const s = seat.slice(-1);
+  if (s === 'B' || s === 'E') {
+    console.log('You got the middle seat');
+  } else {
+    console.log('You got lucky');
+  }
+};
+
+checkMiddleSeat('11B');
+checkMiddleSeat('23C');
+checkMiddleSeat('3E');
+
+//explanation why js convert the string in a object
+
+console.log(new String('Santi'));
+console.log(typeof new String('Santi'));
+
+console.log(typeof new String('Santi').slice(0));
