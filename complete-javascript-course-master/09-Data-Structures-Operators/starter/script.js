@@ -812,3 +812,57 @@ const checkBaggage = function (items) {
 checkBaggage('have a laptop, some food, and a pocket knife');
 checkBaggage('socks and camera');
 checkBaggage('Got some snacks and a gun for protection');
+
+console.log('a+very+nice+string'.split('+'));
+console.log('Santiago Alvarez'.split(' '));
+
+const [firstName, lastName] = 'Santiago Alvarez'.split(' ');
+
+console.log(firstName, lastName);
+
+const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
+console.log(newName);
+
+const capitalizeName = function (name) {
+  const names = name.split(' ');
+  const nameUpper = [];
+  for (const n of names) {
+    // nameUpper.push(n[0].toUpperCase() + n.slice(1));
+
+    //another way is
+    nameUpper.push(n.replace(n[0], n[0].toUpperCase()));
+  }
+  console.log(nameUpper.join(' '));
+};
+
+const passanger = 'jessica ann smith davis';
+
+capitalizeName(passanger);
+
+// console.log('hola'.split().join(' '));
+
+//padding string--> add a number of character to the string, until the string has a certain desire length
+
+const message = 'Go to gate 23!';
+console.log(message.padStart(25, '+').padEnd(35, '+'));
+console.log('Jonas'.padStart(23, '+'));
+
+const maskCreditCard = function (number) {
+  const str = number + ''; //string(number) + convert the operand to a string
+  const last = str.slice(-4);
+  return last.padStart(str.length, '*');
+};
+
+console.log(maskCreditCard(432342345235462546));
+maskCreditCard('23876872368723648723746');
+
+//repeat method. allows repat the same string multiple times
+
+const message2 = 'Bad weather... Alll departures Delayed...';
+console.log(message2.repeat(5));
+
+const planesInLine = function (n) {
+  console.log(`There are ${n} planes in Line \n  `.repeat(n));
+};
+
+planesInLine(7);
