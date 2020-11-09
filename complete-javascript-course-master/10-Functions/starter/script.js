@@ -51,3 +51,30 @@ const newPassport = person => {
 // newPassport(jonas);
 // checkIn(flight, jonas);
 // console.log(flight, jonas);
+
+const oneWord = function (str) {
+  return str.replace(/ /g, '').toLowerCase();
+};
+
+const upperFirstWord = function (str) {
+  const [first, ...other] = str.split(' ');
+  return [first.toUpperCase(), ...other].join(' ');
+};
+
+//higher order function
+const transformer = function (str, fn) {
+  console.log(`The Original string ${str}`);
+  console.log(`Transformed String: ${fn(str)} `);
+  console.log(`Transformed by: ${fn.name}`);
+  console.log('---------------------------');
+};
+
+transformer('JavaScript is the best', upperFirstWord);
+
+transformer('JavaScript is the best', oneWord);
+
+const high5 = function () {
+  console.log('hi');
+};
+
+document.body.addEventListener('click', high5);
