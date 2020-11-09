@@ -69,12 +69,33 @@ const transformer = function (str, fn) {
   console.log('---------------------------');
 };
 
-transformer('JavaScript is the best', upperFirstWord);
+// transformer('JavaScript is the best', upperFirstWord);
 
-transformer('JavaScript is the best', oneWord);
+// transformer('JavaScript is the best', oneWord);
 
 const high5 = function () {
-  console.log('hi');
+  // console.log('hi');
 };
 
-document.body.addEventListener('click', high5);
+// document.body.addEventListener('click', high5);
+
+const greet = function (greeting) {
+  return function (name) {
+    console.log(`${greeting} ${name}`);
+  };
+};
+
+//using arrow functions
+// const greet1 = greeting => {
+//   return name => {
+//     console.log(`${greeting} ${name}`);
+//   };
+// };
+
+const greet1 = greeting => name => console.log(`${greeting} ${name}`);
+
+const greeterHey = greet('Hey');
+greeterHey('Santiago');
+
+const greetsanti = greet1('Hola');
+greetsanti('Santi');
