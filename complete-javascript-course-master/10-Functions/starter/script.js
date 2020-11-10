@@ -127,7 +127,7 @@ const eurowings = {
 
 const book = lufthansa.book;
 
-book.call(eurowings, 23, 'Andres Mcllister');
+// book.call(eurowings, 23, 'Andres Mcllister');
 // book.call(lufthansa, 12, 'Andrea Boccelli');
 
 // console.log(lufthansa.bookings);
@@ -156,19 +156,19 @@ const bookEW = book.bind(eurowings);
 const bookLH = book.bind(lufthansa);
 const bookLX = book.bind(swiis);
 
-bookEW(23, 'Steven Williams');
+// bookEW(23, 'Steven Williams');
 // console.log(eurowings);
 
 const bookEW23 = book.bind(eurowings, 23);
-bookEW23('Santiago');
-bookEW23('Hector Monsalve');
+// bookEW23('Santiago');
+// bookEW23('Hector Monsalve');
 
 //with event listeners
 lufthansa.planes = 300;
 lufthansa.buyPlane = function () {
-  console.log(this);
+  // console.log(this);
   this.planes++;
-  console.log(this.planes);
+  // console.log(this.planes);
 };
 
 //in addEventListeners the keyword is pointing to the document
@@ -178,11 +178,11 @@ document
 
 //partial application
 const addTax = (rate, value) => value + value * rate;
-console.log(addTax(0.1, 200));
+// console.log(addTax(0.1, 200));
 
 //returning a new specific functions with the addTax
 const addVAT = addTax.bind(null, 0.23);
-console.log(addVAT(200));
+// console.log(addVAT(200));
 
 //another waycl
 const addingTAX = function (rate) {
@@ -192,7 +192,7 @@ const addingTAX = function (rate) {
 };
 
 const taxes = addingTAX(0.1);
-console.log(taxes(200));
+// console.log(taxes(200));
 
 /*Coding Challenge #1
 Let's build a simple poll app!
@@ -261,9 +261,9 @@ const poll = {
   },
   displayResults: function (type = 'array') {
     if (type === 'array') {
-      console.log(this.answers);
+      // console.log(this.answers);
     } else if (type === 'string') {
-      console.log(`Poll results are ${this.answers.join(', ')}`);
+      // console.log(`Poll results are ${this.answers.join(', ')}`);
     }
   },
 };
@@ -273,5 +273,32 @@ document
   .querySelector('.poll')
   .addEventListener('click', poll.registerNewAnswer.bind(poll));
 
-poll.displayResults.call({ answers: [5, 2, 3] }, 'string');
-poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string');
+// poll.displayResults.call({ answers: [5, 2, 3] }, 'string');
+// poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string');
+
+//IIFE
+
+const runOnce = function () {
+  console.log('This will never run again');
+};
+
+(function () {
+  // console.log('This will never run again function expression');
+})();
+
+// (() => console.log('This will never run again arrow function'))();
+
+const secureBooking = function () {
+  let passengerCount = 0;
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passangers`);
+  };
+};
+
+const booker = secureBooking();
+booker();
+booker();
+booker();
+
+console.dir(booker);
