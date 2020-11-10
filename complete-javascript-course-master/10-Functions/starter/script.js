@@ -113,11 +113,11 @@ const lufthansa = {
   },
 };
 
-lufthansa.book(239, 'Santiago Alvarez');
+// lufthansa.book(239, 'Santiago Alvarez');
 
-lufthansa.book(635, 'Andres Berrio');
+// lufthansa.book(635, 'Andres Berrio');
 
-console.log(lufthansa);
+// console.log(lufthansa);
 
 const eurowings = {
   airline: 'Eurowings',
@@ -128,9 +128,9 @@ const eurowings = {
 const book = lufthansa.book;
 
 book.call(eurowings, 23, 'Andres Mcllister');
-book.call(lufthansa, 12, 'Andrea Boccelli');
+// book.call(lufthansa, 12, 'Andrea Boccelli');
 
-console.log(lufthansa.bookings);
+// console.log(lufthansa.bookings);
 
 const swiis = {
   airline: 'Swiss Air Lines',
@@ -138,15 +138,58 @@ const swiis = {
   bookings: [],
 };
 
-book.call(swiis, 23, 'Andres Mcllister');
-book.call(swiis, 23, 'Andres Mcllister');
-book.call(swiis, 23, 'Andres Mcllister');
-console.log(swiis.bookings);
+// book.call(swiis, 23, 'Andres Mcllister');
+// console.log(swiis.bookings);
 
 //apply method
 const flightData = [583, 'George Cooper'];
-book.apply(swiis, flightData);
-console.log(swiis);
+// book.apply(swiis, flightData);
+// console.log(swiis);
 
-book.call(swiis, ...flightData);
-console.log(swiis);
+// book.call(swiis, ...flightData);
+// console.log(swiis);
+
+//bind
+// book.call(swiis, ...flightData);
+//is going to set a new function where the eurowings is going to be always the this keyword (the object)
+const bookEW = book.bind(eurowings);
+const bookLH = book.bind(lufthansa);
+const bookLX = book.bind(swiis);
+
+bookEW(23, 'Steven Williams');
+// console.log(eurowings);
+
+const bookEW23 = book.bind(eurowings, 23);
+bookEW23('Santiago');
+bookEW23('Hector Monsalve');
+
+//with event listeners
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+  console.log(this);
+  this.planes++;
+  console.log(this.planes);
+};
+
+//in addEventListeners the keyword is pointing to the document
+document
+  .querySelector('.buy')
+  .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+//partial application
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.1, 200));
+
+//returning a new specific functions with the addTax
+const addVAT = addTax.bind(null, 0.23);
+console.log(addVAT(200));
+
+//another waycl
+const addingTAX = function (rate) {
+  return function addingVAT(value) {
+    return value + value * rate;
+  };
+};
+
+const taxes = addingTAX(0.1);
+console.log(taxes(200));
