@@ -84,7 +84,6 @@ const createUsernames = accounts => {
       .split(' ')
       .map(name => name[0])
       .join('');
-    return acc;
   });
 };
 
@@ -255,3 +254,23 @@ const movementsDescriptions = movements.map((movement, i, arr) => {
 });
 
 // console.log(movementsDescriptions);
+const deposits = movements.filter((mov, i, arr) => {
+  return mov > 0;
+});
+
+console.log(deposits);
+
+//would be the same like this
+const newArr = [];
+for (const el of movements) {
+  if (el > 0) {
+    newArr.push(el);
+  }
+}
+
+console.log(newArr);
+
+//withdrawls
+
+const withdrawal = movements.filter(mov => mov < 0);
+console.log(withdrawal);
