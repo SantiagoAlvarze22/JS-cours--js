@@ -116,7 +116,6 @@ displayMovements(account1.movements);
 
 // //join
 // console.log(letter.join('-'));
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // console.log(movements);
 
 // for (const [i, movement] of movements.entries()) {
@@ -192,32 +191,54 @@ Hints: Use tools from all lectures in this section so far � */
 
 //1,
 
-const dogsJulia = [3, 5, 2, 12, 7];
-const dogsKate = [4, 1, 15, 8, 3];
+// const dogsJulia = [3, 5, 2, 12, 7];
+// const dogsKate = [4, 1, 15, 8, 3];
 
-const checkDogs = function (dogsJulia, dogsKate) {
-  // console.log(dogsJulia);
-  // [dogsJulia[0], ...dogsJulia.slice(-2)];
-  const [...shallowCopyJulia] = dogsJulia;
-  const another = shallowCopyJulia.slice(1, -2);
-  console.log(another);
+// const checkDogs = function (dogsJulia, dogsKate) {
+//   // console.log(dogsJulia);
+//   // [dogsJulia[0], ...dogsJulia.slice(-2)];
+//   const [...shallowCopyJulia] = dogsJulia;
+//   const another = shallowCopyJulia.slice(1, -2);
+//   console.log(another);
 
-  const correctDogsAgeArray = [...another, ...dogsKate];
-  // console.log(correctDogsAgeArray);
+//   const correctDogsAgeArray = [...another, ...dogsKate];
+//   // console.log(correctDogsAgeArray);
 
-  correctDogsAgeArray.forEach((correctDogAge, i) => {
-    if (correctDogAge > 5) {
-      console.log(
-        `Dog number ${i + 1} is an adult, and is ${correctDogAge} years old `
-      );
-    } else {
-      console.log(
-        `Dog number ${
-          i + 1
-        } is still a puppy and its age is ${correctDogAge} years old`
-      );
-    }
-  });
-};
+//   correctDogsAgeArray.forEach((correctDogAge, i) => {
+//     if (correctDogAge > 5) {
+//       console.log(
+//         `Dog number ${i + 1} is an adult, and is ${correctDogAge} years old `
+//       );
+//     } else {
+//       console.log(
+//         `Dog number ${
+//           i + 1
+//         } is still a puppy and its age is ${correctDogAge} years old`
+//       );
+//     }
+//   });
+// };
 
-checkDogs(dogsJulia, dogsKate);
+// checkDogs(dogsJulia, dogsKate);
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const eurToUsd = 1.1;
+
+const movementsUSD = movements.map(movement => movement * eurToUsd);
+// console.log(movementsUSD);
+// console.log(movements);
+
+const movementsUsd = [];
+for (const move of movements) {
+  movementsUsd.push(move * eurToUsd);
+}
+
+// console.log(movementsUSD);
+
+const movementsDescriptions = movements.map((movement, i, arr) => {
+  return `Movement ${i + 1}: You ${
+    movement > 0 ? 'deposited' : 'withdrew'
+  } ${Math.abs(movement)}`;
+});
+
+console.log(movementsDescriptions);
