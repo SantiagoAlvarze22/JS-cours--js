@@ -61,6 +61,22 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+const displayMovements = function (movements) {
+  containerMovements.innerHTML = ''; //para limpiar lo que tiene el elemento inicialmente
+  movements.forEach((movement, i) => {
+    const type = movement > 0 ? 'deposit' : 'withdrawal';
+    const html = `
+    <div class="movements__row">
+      <div class="movements__type movements__type--${type}">${i + 1} ${type} 
+     </div>
+      <div class="movements__value">${movement} €</div>
+    </div>`;
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
+
+displayMovements(account1.movements);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -121,19 +137,31 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // });
 
 //MAP
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
 
-currencies.forEach((value, key, map) => {
-  console.log(`${key}: ${value}`);
-});
+// currencies.forEach((value, key, map) => {
+//   console.log(`${key}: ${value}`);
+// });
 
-//set {doesn't have keys and indexes}
-const currenciesUnique = new Set(['USD', 'GPB', 'USD', 'EUR', 'EUR']);
-console.log(currenciesUnique);
-currenciesUnique.forEach((value, _, set) => {
-  console.log(`${value}:${value}`);
-});
+// //set {doesn't have keys and indexes}
+// const currenciesUnique = new Set(['USD', 'GPB', 'USD', 'EUR', 'EUR']);
+// console.log(currenciesUnique);
+// currenciesUnique.forEach((value, _, set) => {
+//   console.log(`${value}:${value}`);
+// });
+
+// function take(name) {
+//   const nameWell = name.split(' ');
+//   const nombres = [];
+//   for (const namewell1 of nameWell) {
+//     nombres.push(namewell1[0].toUpperCase());
+//     // console.log(nombres);
+//   }
+//   console.log(nombres.join(''));
+// }
+
+// take('santiago alvarez');
