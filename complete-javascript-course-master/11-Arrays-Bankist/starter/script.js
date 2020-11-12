@@ -77,6 +77,19 @@ const displayMovements = function (movements) {
 
 displayMovements(account1.movements);
 
+const createUsernames = accounts => {
+  accounts.forEach(acc => {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+    return acc;
+  });
+};
+
+createUsernames(accounts);
+console.log(accounts);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -241,4 +254,4 @@ const movementsDescriptions = movements.map((movement, i, arr) => {
   } ${Math.abs(movement)}`;
 });
 
-console.log(movementsDescriptions);
+// console.log(movementsDescriptions);
