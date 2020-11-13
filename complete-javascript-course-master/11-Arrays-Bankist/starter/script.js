@@ -289,16 +289,59 @@ const withdrawal = movements.filter(mov => mov < 0);
 
 //accumulator is like snowball
 const balance = movements.reduce((acc, cur, i, arr) => {
-  console.log(`Iteration ${i}: ${acc} addional value ${cur}`);
+  // console.log(`Iteration ${i}: ${acc} addional value ${cur}`);
   return acc + cur;
 }, 0);
-console.log(balance);
+// console.log(balance);
 
 //reduce way
 
 const balance1 = movements.reduce((acc, cu) => acc + cu, 0);
-console.log(balance1);
+// console.log(balance1);
 
 //MAXIMUN VALUE OF THE MOVEMENTS ARRAY
 const max = movements.reduce((acc, mov) => (mov > acc ? mov : acc));
-console.log(max);
+// console.log(max);
+
+/*Let's go back to Julia and Kate's study about dogs. This time, they want to convert
+dog ages to human ages and calculate the average age of the dogs in their study.
+Your tasks:
+Create a function 'calcAverageHumanAge', which accepts an arrays of dog's
+ages ('ages'), and does the following things in order:
+1. Calculate the dog age in human years using the following formula: if the dog is
+<= 2 years old, humanAge = 2 * dogAge. If the dog is > 2 years old,
+humanAge = 16 + dogAge * 4
+2. Exclude all dogs that are less than 18 human years old (which is the same as
+keeping dogs that are at least 18 years old)
+3. Calculate the average human age of all adult dogs (you should already know
+from other challenges how we calculate averages �)
+4. Run the function for both test datasets
+Test data:
+ */
+const data1 = [5, 2, 4, 1, 15, 8, 3];
+const data2 = [16, 6, 10, 5, 6, 1, 4];
+
+const calcAverageHumanAge = dogAges => {
+  let humanAge;
+  const humanAgeArray = dogAges.map(dogAge => {
+    if (dogAge <= 2) {
+      return (humanAge = 2 * dogAge);
+    } else if (dogAge > 2) {
+      return (humanAge = 16 + dogAge * 4);
+    }
+  });
+  console.log(humanAgeArray);
+  const dogsAtLeast18Years = humanAgeArray.filter(ages => ages >= 18);
+  console.log(dogsAtLeast18Years);
+  const dogLength = dogsAtLeast18Years.length;
+  // console.log(dogLength);
+  const average = dogsAtLeast18Years.reduce(
+    (acc, ages) => acc + ages / dogLength,
+    0
+  );
+
+  console.log(`The average of dogs older than 18 is ${average}`);
+};
+
+calcAverageHumanAge(data1);
+calcAverageHumanAge(data2);
