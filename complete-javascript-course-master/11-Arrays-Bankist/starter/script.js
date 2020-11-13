@@ -77,6 +77,17 @@ const displayMovements = function (movements) {
 
 displayMovements(account1.movements);
 
+const calcPrintBalance = function (movements) {
+  const balance = movements.reduce((acc, movement) => acc + movement, 0);
+  // console.log(balance);
+  //   const html = `<div class="balance">
+  //     <p class="balance__value">${balance}</p>
+  // </div>`;
+  labelBalance.textContent = `${balance} EUR`;
+};
+
+calcPrintBalance(account1.movements);
+
 const createUsernames = accounts => {
   accounts.forEach(acc => {
     acc.username = acc.owner
@@ -88,7 +99,8 @@ const createUsernames = accounts => {
 };
 
 createUsernames(accounts);
-console.log(accounts);
+
+// console.log(accounts);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -258,7 +270,7 @@ const deposits = movements.filter((mov, i, arr) => {
   return mov > 0;
 });
 
-console.log(deposits);
+// console.log(deposits);
 
 //would be the same like this
 const newArr = [];
@@ -268,9 +280,25 @@ for (const el of movements) {
   }
 }
 
-console.log(newArr);
+// console.log(newArr);
 
 //withdrawls
 
 const withdrawal = movements.filter(mov => mov < 0);
-console.log(withdrawal);
+// console.log(withdrawal);
+
+//accumulator is like snowball
+const balance = movements.reduce((acc, cur, i, arr) => {
+  console.log(`Iteration ${i}: ${acc} addional value ${cur}`);
+  return acc + cur;
+}, 0);
+console.log(balance);
+
+//reduce way
+
+const balance1 = movements.reduce((acc, cu) => acc + cu, 0);
+console.log(balance1);
+
+//MAXIMUN VALUE OF THE MOVEMENTS ARRAY
+const max = movements.reduce((acc, mov) => (mov > acc ? mov : acc));
+console.log(max);
