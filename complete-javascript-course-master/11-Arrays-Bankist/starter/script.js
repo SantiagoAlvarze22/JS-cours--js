@@ -88,6 +88,30 @@ const calcPrintBalance = function (movements) {
 
 calcPrintBalance(account1.movements);
 
+const calcDisplaySummary = movements => {
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+
+  labelSumIn.textContent = `${incomes} €`;
+
+  const outcoumes = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+
+  labelSumOut.textContent = `${Math.abs(outcoumes)} €`;
+
+  const interest = movements
+    .filter(mov => mov > 0)
+    .map(deposit => (deposit * 1.2) / 100)
+    .filter((int, i, arr) => int >= 1)
+    .reduce((acc, int) => acc + int, 0);
+
+  labelSumInterest.textContent = `${interest} €`;
+};
+
+calcDisplaySummary(account1.movements);
+
 const createUsernames = accounts => {
   accounts.forEach(acc => {
     acc.username = acc.owner
@@ -245,8 +269,15 @@ Hints: Use tools from all lectures in this section so far � */
 
 // checkDogs(dogsJulia, dogsKate);
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
 const eurToUsd = 1.1;
+
+const totalDepositInUSD = movements
+  .filter(mov => mov > 0)
+  .map(mov => mov * eurToUsd)
+  .reduce((acc, mov) => acc + mov, 0)
+  .toFixed(2);
+
+// console.log(totalDepositInUSD);
 
 const movementsUSD = movements.map(movement => movement * eurToUsd);
 // console.log(movementsUSD);
@@ -318,30 +349,30 @@ from other challenges how we calculate averages �)
 4. Run the function for both test datasets
 Test data:
  */
-const data1 = [5, 2, 4, 1, 15, 8, 3];
-const data2 = [16, 6, 10, 5, 6, 1, 4];
+// const data1 = [5, 2, 4, 1, 15, 8, 3];
+// const data2 = [16, 6, 10, 5, 6, 1, 4];
 
-const calcAverageHumanAge = dogAges => {
-  let humanAge;
-  const humanAgeArray = dogAges.map(dogAge => {
-    if (dogAge <= 2) {
-      return (humanAge = 2 * dogAge);
-    } else if (dogAge > 2) {
-      return (humanAge = 16 + dogAge * 4);
-    }
-  });
-  console.log(humanAgeArray);
-  const dogsAtLeast18Years = humanAgeArray.filter(ages => ages >= 18);
-  console.log(dogsAtLeast18Years);
-  const dogLength = dogsAtLeast18Years.length;
-  // console.log(dogLength);
-  const average = dogsAtLeast18Years.reduce(
-    (acc, ages) => acc + ages / dogLength,
-    0
-  );
+// const calcAverageHumanAge = dogAges => {
+//   let humanAge;
+//   const humanAgeArray = dogAges.map(dogAge => {
+//     if (dogAge <= 2) {
+//       return (humanAge = 2 * dogAge);
+//     } else if (dogAge > 2) {
+//       return (humanAge = 16 + dogAge * 4);
+//     }
+//   });
+//   console.log(humanAgeArray);
+//   const dogsAtLeast18Years = humanAgeArray.filter(ages => ages >= 18);
+//   console.log(dogsAtLeast18Years);
+//   const dogLength = dogsAtLeast18Years.length;
+//   // console.log(dogLength);
+//   const average = dogsAtLeast18Years.reduce(
+//     (acc, ages) => acc + ages / dogLength,
+//     0
+//   );
 
-  console.log(`The average of dogs older than 18 is ${average}`);
-};
+//   console.log(`The average of dogs older than 18 is ${average}`);
+// };
 
-calcAverageHumanAge(data1);
-calcAverageHumanAge(data2);
+// calcAverageHumanAge(data1);
+// calcAverageHumanAge(data2);
