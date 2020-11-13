@@ -401,5 +401,19 @@ const calcAverageHumanAge = dogAges => {
   console.log(humanAgeArray);
 };
 
-calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
-calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
+// calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+// calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
+
+//find method
+const fristWithdrawal = movements.find(mov => mov < 0);
+// console.log(movements);
+// console.log(fristWithdrawal);
+
+// console.log(accounts);
+const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+// console.log(account);
+
+for (const account of accounts) {
+  account.owner === 'Jessica Davis';
+}
+console.log(account);
