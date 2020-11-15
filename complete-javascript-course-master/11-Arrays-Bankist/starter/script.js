@@ -600,3 +600,41 @@ console.log(movements);
 movements.sort((a, b) => b - a);
 
 console.log(movements);
+
+//how to fill arrays
+
+//create a new array with 7 empty places
+//I cannot apply the map method, just create a new array with empty values
+const x = new Array(7);
+console.log(x);
+
+//fill method, fill an empty array
+
+x.fill(1, 3);
+console.log(x);
+const arr1 = [1, 2, 3, 4, 5, 6, 7, 8];
+arr1.fill(23, 2, 6);
+console.log(arr1);
+
+//array.rom, array constructor
+
+const y = Array.from({ length: 7 }, () => 1);
+console.log(y);
+
+const z = Array.from({ length: 7 }, (cur, i) => i + 1);
+console.log(z);
+
+const w = Array.from({ length: 100 }, (cur, i) =>
+  Math.round(Math.random(i + 1) * 100)
+);
+console.log(w);
+
+labelBalance.addEventListener('click', function () {
+  const movementsUI = Array.from(
+    document.querySelectorAll('.movements__value'),
+    el => Number(el.textContent.replace('€', ''))
+  );
+  console.log(movementsUI);
+
+  const movementsUI2 = [...document.querySelectorAll('.movements__value')];
+});
