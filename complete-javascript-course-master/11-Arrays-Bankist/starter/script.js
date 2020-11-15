@@ -61,9 +61,13 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = ''; //para limpiar lo que tiene el elemento inicialmente
-  movements.forEach((movement, i) => {
+
+  //creating a copy of movements bc sort mutate the original array
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  movs.forEach((movement, i) => {
     const type = movement > 0 ? 'deposit' : 'withdrawal';
     const html = `
     <div class="movements__row">
@@ -220,6 +224,16 @@ btnClose.addEventListener('click', function (e) {
     containerApp.style.opacity = 0;
   }
   inputCloseUsername.value = inputClosePin.value = '';
+});
+
+let sorted = false; //to create an state of the variable and the sort
+
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  displayMovements(currentAccount.movements, !sorted);
+
+  sorted = !sorted; //allows to work and when we click sort or just come back to the same value
 });
 
 // console.log(accounts);
@@ -568,3 +582,21 @@ const overallBalanceOtherWay2 = accounts
   .reduce((accumulator, everyMovement) => accumulator + everyMovement, 0);
 
 console.log(overallBalanceOtherWay2);
+
+const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
+console.log(owners.sort());
+console.log(owners);
+
+//Numbers
+//return < 0, a,b b(keep order)
+//return >0, b,a, a (switch order)
+console.log(movements);
+// movements.sort((a, b) => (a > b ? 1 : -1));
+//de menor a mayor
+movements.sort((a, b) => a - b);
+console.log(movements);
+
+//de mayor a menor
+movements.sort((a, b) => b - a);
+
+console.log(movements);
