@@ -535,3 +535,36 @@ const deposit = mov => mov > 0;
 console.log(movements.every(deposit));
 console.log(movements.some(deposit));
 console.log(movements.filter(deposit));
+
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(arr.flat());
+
+const arrDeep = [[[1, 2], 3], [[4, 5], 6], 7, 8];
+console.log(arrDeep.flat(2));
+
+const accountMovements = accounts.map(acc => acc.movements);
+console.log(accountMovements);
+
+const allMovements = accountMovements.flat();
+console.log(allMovements);
+
+const overallBalance = allMovements.reduce(
+  (accumulator, everyMovement) => accumulator + everyMovement,
+  0
+);
+console.log(overallBalance);
+
+const overallBalanceOtherWay = accounts
+  .map(acc => acc.movements)
+  .flat()
+  .reduce((accumulator, everyMovement) => accumulator + everyMovement, 0);
+
+console.log(overallBalanceOtherWay);
+
+//flat map
+
+const overallBalanceOtherWay2 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((accumulator, everyMovement) => accumulator + everyMovement, 0);
+
+console.log(overallBalanceOtherWay2);
