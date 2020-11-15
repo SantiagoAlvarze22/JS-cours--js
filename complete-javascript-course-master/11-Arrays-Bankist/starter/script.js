@@ -170,6 +170,7 @@ btnTransfer.addEventListener('click', function (e) {
     acc => acc.username === inputTransferTo.value
   );
 
+  //once I transfer, delente the inputs
   inputTransferAmount.value = inputTransferTo.value = '';
 
   if (
@@ -185,6 +186,20 @@ btnTransfer.addEventListener('click', function (e) {
     //update UI
     updateUI(currentAccount);
   }
+});
+
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    //add movement
+    currentAccount.movements.push(amount);
+
+    updateUI(currentAccount);
+  }
+  inputLoanAmount.value = '';
 });
 
 btnClose.addEventListener('click', function (e) {
@@ -500,3 +515,23 @@ for (const account of accounts) {
   account.owner === 'Jessica Davis';
 }
 // console.log(account);
+
+console.log(movements);
+
+//includes check for equality
+console.log(movements.includes(-130));
+
+//some checks for conditions
+const anyDeposits = movements.some(mov => mov > 0);
+
+console.log(anyDeposits);
+
+//every
+console.log(movements.every(mov => mov > 0));
+console.log(account4.movements.every(mov => mov > 0));
+
+//separate callback
+const deposit = mov => mov > 0;
+console.log(movements.every(deposit));
+console.log(movements.some(deposit));
+console.log(movements.filter(deposit));
