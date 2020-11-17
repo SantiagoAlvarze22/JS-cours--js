@@ -317,23 +317,45 @@ btnSort.addEventListener('click', function (e) {
 // console.log(+(2.3).toFixed(0)); //close to the next integer <.5 >.5
 // console.log(+(2.2453).toFixed(3));
 
-console.log(5 % 2); //  2*2 +1
-console.log(8 % 3); // 8 = 2*3 +2
+// console.log(5 % 2); //  2*2 +1
+// console.log(8 % 3); // 8 = 2*3 +2
 
-console.log(6 % 2);
-console.log(6 / 2);
+// console.log(6 % 2);
+// console.log(6 / 2);
 
-const isEven = n => n % 2 === 0;
-console.log(isEven(2));
-console.log(isEven(3));
+// const isEven = n => n % 2 === 0;
+// console.log(isEven(2));
+// console.log(isEven(3));
 
-labelBalance.addEventListener('click', function () {
-  [...document.querySelectorAll('.movements__row')].forEach((row, i) => {
-    if (i % 2 === 0) {
-      row.style.backgroundColor = 'orangered';
-    }
-    if (i % 3 === 0) {
-      row.style.backgroundColor = 'blue';
-    }
-  });
-});
+// labelBalance.addEventListener('click', function () {
+//   [...document.querySelectorAll('.movements__row')].forEach((row, i) => {
+//     if (i % 2 === 0) {
+//       row.style.backgroundColor = 'orangered';
+//     }
+//     if (i % 3 === 0) {
+//       row.style.backgroundColor = 'blue';
+//     }
+//   });
+// });
+
+//js can not represent numbers accurately
+console.log(2 ** 53 - 1);
+console.log(Number.MAX_SAFE_INTEGER);
+
+console.log(21545445545845487654132132685465n);
+console.log(BigInt(21545445545845487654132132685465));
+const huge = 21545445545845487654132132685465n;
+//operations
+
+console.log(10000n + 1000n);
+
+//exceptcions
+console.log(20n > 15);
+console.log(20n === 20); // === does not do type coercion, just the == and they r differente, 1 BigInt other regular number
+console.log(typeof 20n);
+console.log(20n == 20); //js does type coercion
+
+console.log(huge + 'is really big!!!');
+
+//division
+console.log(11n / 3n); //it returns the closest integer
