@@ -339,23 +339,57 @@ btnSort.addEventListener('click', function (e) {
 // });
 
 //js can not represent numbers accurately
-console.log(2 ** 53 - 1);
-console.log(Number.MAX_SAFE_INTEGER);
+// console.log(2 ** 53 - 1);
+// console.log(Number.MAX_SAFE_INTEGER);
 
-console.log(21545445545845487654132132685465n);
-console.log(BigInt(21545445545845487654132132685465));
-const huge = 21545445545845487654132132685465n;
-//operations
+// console.log(21545445545845487654132132685465n);
+// console.log(BigInt(21545445545845487654132132685465));
+// const huge = 21545445545845487654132132685465n;
+// //operations
 
-console.log(10000n + 1000n);
+// console.log(10000n + 1000n);
 
-//exceptcions
-console.log(20n > 15);
-console.log(20n === 20); // === does not do type coercion, just the == and they r differente, 1 BigInt other regular number
-console.log(typeof 20n);
-console.log(20n == 20); //js does type coercion
+// //exceptcions
+// console.log(20n > 15);
+// console.log(20n === 20); // === does not do type coercion, just the == and they r differente, 1 BigInt other regular number
+// console.log(typeof 20n);
+// console.log(20n == 20); //js does type coercion
 
-console.log(huge + 'is really big!!!');
+// console.log(huge + 'is really big!!!');
 
-//division
-console.log(11n / 3n); //it returns the closest integer
+// //division
+// console.log(11n / 3n); //it returns the closest integer
+
+//create a date
+const now = new Date();
+console.log(now);
+
+console.log(new Date('Aug 02 2020 18:05:41'));
+console.log(new Date('December 24, 2015'));
+console.log(new Date(account1.movementsDates[0]));
+console.log(account1);
+console.log(new Date(2017, 10, 19, 15, 23, 5));
+console.log(new Date(2017, 10, 33, 15, 23, 5));
+
+console.log(new Date(0));
+console.log(new Date(3 * 24 * 60 * 60 * 1000));
+
+//working with dates
+const future = new Date(2037, 10, 19, 15, 23);
+console.log(future);
+console.log(future.getFullYear());
+console.log(future.getMonth());
+console.log(future.getDate());
+console.log(future.getDay());
+console.log(future.getHours());
+console.log(future.getMinutes());
+console.log(future.getSeconds());
+console.log(future.toISOString()); //converting a particular object date into a string
+
+console.log(future.getTime());
+console.log(new Date(2142274980000));
+
+console.log(Date.now());
+
+future.setFullYear(2040);
+console.log(future);
