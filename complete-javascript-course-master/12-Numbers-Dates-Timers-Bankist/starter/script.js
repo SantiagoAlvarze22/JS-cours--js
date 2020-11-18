@@ -187,9 +187,39 @@ const updateUI = function (acc) {
   calcDisplaySummary(acc);
 };
 
+const startLogOutTimer = function () {
+  //Call the timer every second
+
+  const tick = function () {
+    const min = `${Math.trunc(time / 60)}`.padStart(2, 0);
+    const sec = String(time % 60).padStart(2, 0);
+
+    //In each call, print the remaining time to UI
+    labelTimer.textContent = `${min}:${sec}`;
+
+    //when 0 second, stop timer and log out user
+    if (time === 0) {
+      clearInterval(timer);
+      labelWelcome.textContent = 'Log in to get started';
+      containerApp.style.opacity = 0;
+    }
+
+    //decrease 1s
+    time--;
+  };
+
+  //Set time to 5 minutes
+  let time = 600;
+
+  //call the timer every second
+  tick();
+  const timer = setInterval(tick, 1000);
+  return timer;
+};
+
 ///////////////////////////////////////
 // Event handlers
-let currentAccount;
+let currentAccount, timer;
 
 //Fake always logged in
 // currentAccount = account1;
@@ -245,6 +275,11 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
+    //timer
+    //validation if exists a timer, and if exist delete and start over
+    if (timer) clearInterval(timer);
+    timer = startLogOutTimer();
+
     // Update UI
     updateUI(currentAccount);
   }
@@ -274,6 +309,10 @@ btnTransfer.addEventListener('click', function (e) {
 
     // Update UI
     updateUI(currentAccount);
+
+    //reset the timer
+    clearInterval(timer);
+    timer = startLogOutTimer();
   }
 });
 
@@ -292,6 +331,10 @@ btnLoan.addEventListener('click', function (e) {
 
       // Update UI
       updateUI(currentAccount);
+
+      //reset the timer
+      clearInterval(timer);
+      timer = startLogOutTimer();
     }, 2500);
   }
 
@@ -516,7 +559,17 @@ if (ingredients.includes('spinach')) clearTimeout(pizzaTimer);
 
 //setInterval
 
-setInterval(function () {
-  const now = new Date();
-  console.log(now);
-}, 3000);
+// setInterval(function () {
+//   const now = new Date();
+//   console.log(now);
+// }, 1000);
+
+// setInterval(function () {
+//   console.log('hora');
+//   setInterval(function () {
+//     console.log('minuto');
+//     setInterval(function () {
+//       console.log('1 segundo');
+//     }, 1000 * 60 * 60);
+//   }, 60000);
+// }, 1000);
