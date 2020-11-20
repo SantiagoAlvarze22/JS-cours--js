@@ -12,6 +12,14 @@ const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
 
+//tabbed component
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+
+//nav
+const nav = document.querySelector('.nav');
+
 const openModal = function () {
   modal.classList.remove('hidden');
   overlay.classList.remove('hidden');
@@ -34,7 +42,7 @@ document.addEventListener('keydown', function (e) {
 });
 
 btnScrollTo.addEventListener('click', function (e) {
-  const s1coords = section1.getBoundingClientRect();
+  section1.getBoundingClientRect();
   console.log(e.target.getBoundingClientRect());
 
   console.log('current scrroll (x/y)', window.pageXOffset, window.pageYOffset);
@@ -74,11 +82,6 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
   }
 });
 
-//tabbed component
-const tabs = document.querySelectorAll('.operations__tab');
-const tabsContainer = document.querySelector('.operations__tab-container');
-const tabsContent = document.querySelectorAll('.operations__content');
-
 //events delagation to my tabs buttons, I need to attach the event to the common parent element, so doing that, would be a btter performance bc I avoid to call the same event the multiplie times that I clicked in my target
 
 tabsContainer.addEventListener('click', function (e) {
@@ -99,6 +102,25 @@ tabsContainer.addEventListener('click', function (e) {
     .querySelector(`.operations__content--${clicked.dataset.tab}`)
     .classList.add('operations__content--active');
 });
+
+//Menu fade animation
+
+const handleHover = function (e) {
+  if (e.target.classList.contains('nav__link')) {
+    const link = e.target; //valor que se esta pasando el maouse
+    //select siblings
+    const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+    const logo = link.closest('.nav').querySelector('img');
+
+    siblings.forEach(el => {
+      if (el !== link) el.style.opacity = this;
+    });
+    logo.style.opacity = this;
+  }
+};
+
+nav.addEventListener('mouseover', handleHover.bind(0.5));
+nav.addEventListener('mouseout', handleHover.bind(1));
 
 //scrolling the s1coords is relative to the viewport and not to the document, what I do it just addiotion the current height the the top coord, and is now accorrding to the html document, absolute position relative to the document
 // window.scrollTo(
