@@ -8,6 +8,10 @@ const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 
+//smooth scroll
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
 const openModal = function () {
   modal.classList.remove('hidden');
   overlay.classList.remove('hidden');
@@ -29,10 +33,6 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
-//smooth scroll
-const btnScrollTo = document.querySelector('.btn--scroll-to');
-const section1 = document.querySelector('#section--1');
-
 btnScrollTo.addEventListener('click', function (e) {
   const s1coords = section1.getBoundingClientRect();
   console.log(e.target.getBoundingClientRect());
@@ -44,21 +44,47 @@ btnScrollTo.addEventListener('click', function (e) {
     document.documentElement.clientWidth
   );
 
-  //scrolling the s1coords is relative to the viewport and not to the document, what I do it just addiotion the current height the the top coord, and is now accorrding to the html document, absolute position relative to the document
-  // window.scrollTo(
-  //   s1coords.left + window.pageXOffset,
-  //   s1coords.top + window.pageYOffset
-  // );
-
-  // window.scrollTo({
-  //   left: s1coords.left + window.pageXOffset,
-  //   top: s1coords.top + window.pageYOffset,
-  //   behavior: 'smooth',
-  // });
-
   //nowadays view
   section1.scrollIntoView({ behavior: 'smooth' });
 });
+
+///////////
+// Page navegation
+// document.querySelectorAll('.nav__link').forEach(function (el) {
+//   el.addEventListener('click', function (e) {
+//     e.preventDefault();
+//     const id = this.getAttribute('href');
+//     console.log(id);
+//     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+//   });
+// });
+
+//eventdelgation
+// 1. add event listener to a comon parent element
+//2. determine what element originated the event
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault();
+  // console.log(e.target);
+  //Matchin strategy
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    // console.log(id);
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+//scrolling the s1coords is relative to the viewport and not to the document, what I do it just addiotion the current height the the top coord, and is now accorrding to the html document, absolute position relative to the document
+// window.scrollTo(
+//   s1coords.left + window.pageXOffset,
+//   s1coords.top + window.pageYOffset
+// );
+
+// window.scrollTo({
+//   left: s1coords.left + window.pageXOffset,
+//   top: s1coords.top + window.pageYOffset,
+//   behavior: 'smooth',
+// });
 
 //slecting elemetns
 // console.log(document.documentElement);
@@ -169,28 +195,24 @@ btnScrollTo.addEventListener('click', function (e) {
 // };
 
 //random color rgb(255,255,255);
-const randomInt = (min, max) =>
-  Math.floor(Math.random() * (max - min + 1) + min);
-const randomColor = () =>
-  `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
+// const randomInt = (min, max) =>
+//   Math.floor(Math.random() * (max - min + 1) + min);
+// const randomColor = () =>
+//   `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
 
-document.querySelector('.nav__link').addEventListener('click', function (e) {
-  this.style.backgroundColor = randomColor(0, 255);
-  console.log('lINK', e.target, e.currentTarget);
-  //strop propagation
-  // e.stopPropagation();
-});
+// document.querySelector('.nav__link').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor(0, 255);
+//   console.log('lINK', e.target, e.currentTarget);
+//   //strop propagation
+//   // e.stopPropagation();
+// });
 
-document.querySelector('.nav__links').addEventListener('click', function (e) {
-  this.style.backgroundColor = randomColor(0, 255);
-  console.log('Container', e.target, e.currentTarget);
-});
+// document.querySelector('.nav__links').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor(0, 255);
+//   console.log('Container', e.target, e.currentTarget);
+// });
 
-document.querySelector('.nav').addEventListener(
-  'click',
-  function (e) {
-    this.style.backgroundColor = randomColor(0, 255);
-    console.log('Nav', e.target, e.currentTarget);
-  },
-  true
-);
+// document.querySelector('.nav').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor(0, 255);
+//   console.log('Nav', e.target, e.currentTarget);
+// });
