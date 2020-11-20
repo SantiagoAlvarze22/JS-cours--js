@@ -74,6 +74,32 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
   }
 });
 
+//tabbed component
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+
+//events delagation to my tabs buttons, I need to attach the event to the common parent element, so doing that, would be a btter performance bc I avoid to call the same event the multiplie times that I clicked in my target
+
+tabsContainer.addEventListener('click', function (e) {
+  const clicked = e.target.closest('.operations__tab'); //closest parent with that class
+
+  //guard claus, when nothing is click relating to the closest parent with that class, execute to the function
+  if (!clicked) return;
+
+  //eliminar de todos los tabs la clase active, efecto que se baja cuando se activa la clase del otro boton que se le dio click, y para que se muestre
+  tabs.forEach(t => t.classList.remove('operations__tab--active'));
+  tabsContent.forEach(tc => tc.classList.remove('operations__content--active'));
+
+  //cuando se le de click, activa la clases
+  clicked.classList.add('operations__tab--active');
+
+  //activate content area
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
+});
+
 //scrolling the s1coords is relative to the viewport and not to the document, what I do it just addiotion the current height the the top coord, and is now accorrding to the html document, absolute position relative to the document
 // window.scrollTo(
 //   s1coords.left + window.pageXOffset,
@@ -217,33 +243,33 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
 //   console.log('Nav', e.target, e.currentTarget);
 // });
 
-const h1 = document.querySelector('h1');
-console.log(h1.querySelectorAll('.highlight'));
-console.log(h1.childNodes);
-console.log(h1.children); //elements that are inside of the h1
-h1.firstElementChild.style.color = 'white';
-h1.lastElementChild.style.color = 'blue';
+// const h1 = document.querySelector('h1');
+// console.log(h1.querySelectorAll('.highlight'));
+// console.log(h1.childNodes);
+// console.log(h1.children); //elements that are inside of the h1
+// h1.firstElementChild.style.color = 'white';
+// h1.lastElementChild.style.color = 'blue';
 
-//going upwars --> selecting parents
-console.log(h1.parentNode);
-console.log(h1.parentElement);
+// //going upwars --> selecting parents
+// console.log(h1.parentNode);
+// console.log(h1.parentElement);
 
-//closest parent element
-h1.closest('.header').style.background = 'var(--gradient-secondary)';
+// //closest parent element
+// h1.closest('.header').style.background = 'var(--gradient-secondary)';
 
-h1.closest('h1').style.background = 'var(--gradient-primary)';
+// h1.closest('h1').style.background = 'var(--gradient-primary)';
 
-//going sideways: sibling
+// //going sideways: sibling
 
-console.log(h1.previousElementSibling);
-console.log(h1.nextElementSibling);
+// console.log(h1.previousElementSibling);
+// console.log(h1.nextElementSibling);
 
-console.log(h1.previousSibling);
-console.log(h1.nextSibling);
+// console.log(h1.previousSibling);
+// console.log(h1.nextSibling);
 
-console.log(h1.parentElement.children);
-[...h1.parentElement.children].forEach(el => {
-  if (el !== h1) {
-    el.style.transfom = 'scale(0.5)';
-  }
-});
+// console.log(h1.parentElement.children);
+// [...h1.parentElement.children].forEach(el => {
+//   if (el !== h1) {
+//     el.style.transfom = 'scale(0.5)';
+//   }
+// });
