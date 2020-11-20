@@ -149,3 +149,21 @@ btnScrollTo.addEventListener('click', function (e) {
 
 // //don't use this bc it would overwrite all the logo classes
 // logo.className = 'jonas';
+
+const alertH1 = function (e) {
+  alert('addEvenlistener: grea your are reading and heading');
+
+  //The event only can listen once, bc everytime that I click, I run it and automaclly delete it
+
+  //after an amount of time I wan to delete it
+  setTimeout(() => {
+    //The event only can listen once, bc everytime that I click, I run it and automaclly delete it
+    h1.removeEventListener('mouseenter', alertH1);
+  }, 3000);
+};
+const h1 = document.querySelector('h1');
+h1.addEventListener('mouseenter', alertH1);
+
+// h1.onmouseenter = function (e) {
+//   alert('addEvenlistener: grea your are reading and heading');
+// };
