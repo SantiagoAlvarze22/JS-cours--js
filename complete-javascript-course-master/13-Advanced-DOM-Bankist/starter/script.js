@@ -324,6 +324,23 @@ const slider = function () {
 
 slider();
 
+//event when the document is completely fire
+document.addEventListener('DOMContentLoaded', function (e) {
+  console.log('HTML parsed and DOM tree built', e);
+});
+
+//after the document load
+window.addEventListener('load', function (e) {
+  console.log('page fully loaded', e);
+});
+
+//event fires before the user is about to live the page, event to ask the user if they want to leave the page
+window.addEventListener('beforeunload', function (e) {
+  e.preventDefault();
+  console.log(e);
+  e.returnValue = '';
+});
+
 //-100%,0%,100%,200%
 
 //scrolling the s1coords is relative to the viewport and not to the document, what I do it just addiotion the current height the the top coord, and is now accorrding to the html document, absolute position relative to the document
