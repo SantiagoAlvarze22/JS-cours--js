@@ -184,7 +184,8 @@ const revealSection = function (entries, observer) {
 
   entry.target.classList.remove('section--hidden');
 
-  //unobserve, the sections r not going to be observe so the class is going to be removed
+  //unobserve, the sections r not going to be observe so the class is going to be removed, once I charged and avoid the behavior always
+
   observer.unobserve(entry.target);
 };
 
@@ -198,7 +199,7 @@ allSections.forEach(function (section) {
   section.classList.add('section--hidden');
 });
 
-//azy loading images
+//lazy loading images
 const imgTargets = document.querySelectorAll('img[data-src]');
 
 const loadImg = function (entries, observer) {
@@ -220,6 +221,56 @@ const imgObserver = new IntersectionObserver(loadImg, {
 });
 
 imgTargets.forEach(img => imgObserver.observe(img));
+
+//slider
+const slides = document.querySelectorAll('.slide');
+const btnLeft = document.querySelector('.slider__btn--left');
+const btnRight = document.querySelector('.slider__btn--right');
+
+//0%,100%,200%,300%
+
+//current slide
+let curSlide = 0;
+
+//maximun slide
+const maxSlide = slides.length - 1;
+
+const goToSlide = function (slide) {
+  slides.forEach((s, i) => {
+    s.style.transform = `translateX(${100 * (i - slide)}%)`;
+  });
+};
+
+//darle la posicion inicial a mis slides
+goToSlide(0);
+
+//nextslide
+
+const nextSlide = function () {
+  //updating the slide position to avoid the infinity
+  if (curSlide === maxSlide) {
+    //vuelve al primer slide
+    curSlide = 0;
+  } else {
+    curSlide++;
+  }
+  goToSlide(curSlide);
+};
+
+const prevSlide = function () {
+  if (curSlide === 0) {
+    curSlide = maxSlide;
+  } else {
+    curSlide--;
+  }
+
+  goToSlide(curSlide);
+};
+
+btnRight.addEventListener('click', nextSlide);
+btnLeft.addEventListener('click', prevSlide);
+
+//-100%,0%,100%,200%
 
 //scrolling the s1coords is relative to the viewport and not to the document, what I do it just addiotion the current height the the top coord, and is now accorrding to the html document, absolute position relative to the document
 // window.scrollTo(
