@@ -1,35 +1,35 @@
 'use strict';
 
-const Person = function (firstName, birthYear) {
-  this.firstName = firstName;
-  this.birthYear = birthYear;
+// const Person = function (firstName, birthYear) {
+// this.firstName = firstName;
+// this.birthYear = birthYear;
 
-  //never create a method inside of a constructor functions is A BAD PRACTICE, BC IT WOULD BE CREATED AS  MANY INSTANCES I CREATED, FOR THIS PROTYPE INHERITANCE
-  // this.calcAge = function () {
-  //   console.log(2037 - this.birthYear);
-  // };
-};
+//never create a method inside of a constructor functions is A BAD PRACTICE, BC IT WOULD BE CREATED AS  MANY INSTANCES I CREATED, FOR THIS PROTYPE INHERITANCE
+// this.calcAge = function () {
+//   console.log(2037 - this.birthYear);
+// };
+// };
 
-const jonas = new Person('Jonas', 1991);
+// const jonas = new Person('Jonas', 1991);
 
 //static method
-Person.hey = function () {
-  console.log('Hey there :)');
-  console.log(this); //is person or it depends on the object that is called the function. It'll change
-};
+// Person.hey = function () {
+//   console.log('Hey there :)');
+//   console.log(this); //is person or it depends on the object that is called the function. It'll change
+// };
 
 //method set in the constructor and not in the constructor prototype property, for that is not being inherited
-Person.hey();
+// Person.hey();
 
 // jonas.hey(); //it can not be accessed bc is not in the prototype of the jonas object
 
-Person.prototype.greeting = function () {
-  console.log('Hey, I am not a static method');
-};
+// Person.prototype.greeting = function () {
+//   console.log('Hey, I am not a static method');
+// };
 
 // Person.greeting(); //it doesn't exist
 
-jonas.greeting();
+// jonas.greeting();
 
 // const matilda = new Person('Matilda', 2017);
 // console.log(jonas, matilda);
@@ -129,72 +129,99 @@ jonas.greeting();
 // const PersonCL = class {};
 
 //class declarations
-class PersonCl {
-  constructor(fullName, birthYear) {
-    this.fullName = fullName;
-    this.birthYear = birthYear;
-  }
-  //instance methods
-  //Method will be added to .prototype property
+// class PersonCl {
+//   constructor(fullName, birthYear) {
+//     this.fullName = fullName;
+//     this.birthYear = birthYear;
+//   }
+//   //instance methods
+//   //Method will be added to .prototype property
+//   calcAge() {
+//     console.log(2037 - this.birthYear);
+//   }
+
+//   greet() {
+//     console.log(`Hey  ${this.firstName}`);
+//   }
+
+//   get age() {
+//     return 2037 - this.birthYear;
+//   }
+
+//   //set a property that alreadt exist
+//   set fullName(name) {
+//     console.log(name);
+//     if (name.includes(' ')) this._fullName = name;
+//     else alert(`${name} is not a full name`);
+//   }
+
+//   get fullName() {
+//     return this._fullName;
+//   }
+
+//   //static methods
+//   static hey() {
+//     console.log('holi');
+//   }
+// }
+
+// PersonCl.hey();
+// const jessica = new PersonCl('Jessica Davis', 1995);
+// console.log(jessica);
+// jessica.calcAge();
+
+// console.log(jessica.__proto__ === PersonCl.prototype);
+
+// jessica.greet();
+// console.log(jessica.age);
+
+// //1. classes are NOT hoisted
+// // 2. classes are first-class citizen
+// //3. classes are executed in strict mode
+
+// const walter = new PersonCl('walter bried', 1965);
+
+// const account = {
+//   owner: 'jonas',
+//   movements: [200, 530, 120, 300],
+
+//   get latest() {
+//     return this.movements.slice(-1).pop();
+//   },
+
+//   set latest(mov) {
+//     this.movements.push(mov);
+//   },
+// };
+
+// console.log(account.latest);
+
+// account.latest = 50; //set is just a property, an I invoke it as if I were setting a value
+// console.log(account.movements);
+
+const PersonProto = {
   calcAge() {
     console.log(2037 - this.birthYear);
-  }
-
-  greet() {
-    console.log(`Hey  ${this.firstName}`);
-  }
-
-  get age() {
-    return 2037 - this.birthYear;
-  }
-
-  //set a property that alreadt exist
-  set fullName(name) {
-    console.log(name);
-    if (name.includes(' ')) this._fullName = name;
-    else alert(`${name} is not a full name`);
-  }
-
-  get fullName() {
-    return this._fullName;
-  }
-
-  //static methods
-  static hey() {
-    console.log('holi');
-  }
-}
-
-PersonCl.hey();
-const jessica = new PersonCl('Jessica Davis', 1995);
-console.log(jessica);
-jessica.calcAge();
-
-console.log(jessica.__proto__ === PersonCl.prototype);
-
-jessica.greet();
-console.log(jessica.age);
-
-//1. classes are NOT hoisted
-// 2. classes are first-class citizen
-//3. classes are executed in strict mode
-
-const walter = new PersonCl('walter bried', 1965);
-
-const account = {
-  owner: 'jonas',
-  movements: [200, 530, 120, 300],
-
-  get latest() {
-    return this.movements.slice(-1).pop();
   },
 
-  set latest(mov) {
-    this.movements.push(mov);
+  //this is no a constructor function bc is not call by the new keyword
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
   },
 };
 
-console.log(account.latest);
+const steven = Object.create(PersonProto);
+console.log(steven);
 
-account.latest = 50; //set is just a property, an I invoke it as if I were setting a value
-console.log(account.movements);
+steven.name = 'Steven';
+steven.birthYear = 2002;
+steven.calcAge();
+console.log(steven);
+
+console.log(steven.__proto__ === PersonProto);
+
+const sarah = Object.create(PersonProto);
+sarah.init('Sarah', 1979);
+sarah.calcAge();
+console.log(sarah);
