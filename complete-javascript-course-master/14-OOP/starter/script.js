@@ -225,3 +225,90 @@ const sarah = Object.create(PersonProto);
 sarah.init('Sarah', 1979);
 sarah.calcAge();
 console.log(sarah);
+
+// const Car = function (speed, make) {
+//   this.speed = speed;
+//   this.make = make;
+// };
+
+// Car.prototype.accelerate = function () {
+//   console.log((this.speed += 10));
+// };
+
+// Car.prototype.brake = function () {
+//   console.log((this.speed -= 5));
+// };
+
+// const bmw = new Car(120, 'BMW');
+// bmw.accelerate();
+// bmw.brake();
+
+// const mer = new Car(95, 'Mercedes');
+// mer.accelerate();
+// mer.brake();
+
+class CarCL {
+  constructor(speed, make) {
+    this.speed = speed;
+    this.make = make;
+  }
+
+  accelerate() {
+    this.speed += 10;
+    console.log(`${this.make} is going at ${this.speed} km/h`);
+  }
+
+  brake() {
+    this.speed -= 5;
+    console.log(`${this.make} is going at ${this.speed} km/h`);
+  }
+
+  get speedUS() {
+    return this.speed / 1.6;
+  }
+
+  set speedUS(speed) {
+    this.speed = speed * 1.6;
+  }
+}
+
+const ford = new CarCL(120, 'Ford');
+
+ford.speedUS = 50;
+console.log(ford);
+
+// class PersonCl {
+//   constructor(fullName, birthYear) {
+//     this.fullName = fullName;
+//     this.birthYear = birthYear;
+//   }
+//   //instance methods
+//   //Method will be added to .prototype property
+//   calcAge() {
+//     console.log(2037 - this.birthYear);
+//   }
+
+//   greet() {
+//     console.log(`Hey  ${this.firstName}`);
+//   }
+
+//   get age() {
+//     return 2037 - this.birthYear;
+//   }
+
+//   //set a property that alreadt exist
+//   set fullName(name) {
+//     console.log(name);
+//     if (name.includes(' ')) this._fullName = name;
+//     else alert(`${name} is not a full name`);
+//   }
+
+//   get fullName() {
+//     return this._fullName;
+//   }
+
+//   //static methods
+//   static hey() {
+//     console.log('holi');
+//   }
+// }
