@@ -1,16 +1,35 @@
 'use strict';
 
-// const Person = function (firstName, birthYear) {
-//   this.firstName = firstName;
-//   this.birthYear = birthYear;
+const Person = function (firstName, birthYear) {
+  this.firstName = firstName;
+  this.birthYear = birthYear;
 
-//   //never create a method inside of a constructor functions is A BAD PRACTICE, BC IT WOULD BE CREATED AS  MANY INSTANCES I CREATED, FOR THIS PROTYPE INHERITANCE
-//   // this.calcAge = function () {
-//   //   console.log(2037 - this.birthYear);
-//   // };
-// };
+  //never create a method inside of a constructor functions is A BAD PRACTICE, BC IT WOULD BE CREATED AS  MANY INSTANCES I CREATED, FOR THIS PROTYPE INHERITANCE
+  // this.calcAge = function () {
+  //   console.log(2037 - this.birthYear);
+  // };
+};
 
-// const jonas = new Person('Jonas', 1991);
+const jonas = new Person('Jonas', 1991);
+
+//static method
+Person.hey = function () {
+  console.log('Hey there :)');
+  console.log(this); //is person or it depends on the object that is called the function. It'll change
+};
+
+//method set in the constructor and not in the constructor prototype property, for that is not being inherited
+Person.hey();
+
+// jonas.hey(); //it can not be accessed bc is not in the prototype of the jonas object
+
+Person.prototype.greeting = function () {
+  console.log('Hey, I am not a static method');
+};
+
+// Person.greeting(); //it doesn't exist
+
+jonas.greeting();
 
 // const matilda = new Person('Matilda', 2017);
 // console.log(jonas, matilda);
@@ -115,7 +134,7 @@ class PersonCl {
     this.fullName = fullName;
     this.birthYear = birthYear;
   }
-
+  //instance methods
   //Method will be added to .prototype property
   calcAge() {
     console.log(2037 - this.birthYear);
@@ -139,8 +158,14 @@ class PersonCl {
   get fullName() {
     return this._fullName;
   }
+
+  //static methods
+  static hey() {
+    console.log('holi');
+  }
 }
 
+PersonCl.hey();
 const jessica = new PersonCl('Jessica Davis', 1995);
 console.log(jessica);
 jessica.calcAge();
