@@ -199,32 +199,32 @@
 // account.latest = 50; //set is just a property, an I invoke it as if I were setting a value
 // console.log(account.movements);
 
-const PersonProto = {
-  calcAge() {
-    console.log(2037 - this.birthYear);
-  },
+// const PersonProto = {
+//   calcAge() {
+//     console.log(2037 - this.birthYear);
+//   },
 
-  //this is no a constructor function bc is not call by the new keyword
-  init(firstName, birthYear) {
-    this.firstName = firstName;
-    this.birthYear = birthYear;
-  },
-};
+//   //this is no a constructor function bc is not call by the new keyword
+//   init(firstName, birthYear) {
+//     this.firstName = firstName;
+//     this.birthYear = birthYear;
+//   },
+// };
 
-const steven = Object.create(PersonProto);
-console.log(steven);
+// const steven = Object.create(PersonProto);
+// console.log(steven);
 
-steven.name = 'Steven';
-steven.birthYear = 2002;
-steven.calcAge();
-console.log(steven);
+// steven.name = 'Steven';
+// steven.birthYear = 2002;
+// steven.calcAge();
+// console.log(steven);
 
-console.log(steven.__proto__ === PersonProto);
+// console.log(steven.__proto__ === PersonProto);
 
-const sarah = Object.create(PersonProto);
-sarah.init('Sarah', 1979);
-sarah.calcAge();
-console.log(sarah);
+// const sarah = Object.create(PersonProto);
+// sarah.init('Sarah', 1979);
+// sarah.calcAge();
+// console.log(sarah);
 
 // const Car = function (speed, make) {
 //   this.speed = speed;
@@ -247,68 +247,69 @@ console.log(sarah);
 // mer.accelerate();
 // mer.brake();
 
-class CarCL {
-  constructor(speed, make) {
-    this.speed = speed;
-    this.make = make;
-  }
-
-  accelerate() {
-    this.speed += 10;
-    console.log(`${this.make} is going at ${this.speed} km/h`);
-  }
-
-  brake() {
-    this.speed -= 5;
-    console.log(`${this.make} is going at ${this.speed} km/h`);
-  }
-
-  get speedUS() {
-    return this.speed / 1.6;
-  }
-
-  set speedUS(speed) {
-    this.speed = speed * 1.6;
-  }
-}
-
-const ford = new CarCL(120, 'Ford');
-
-ford.speedUS = 50;
-console.log(ford);
-
-// class PersonCl {
-//   constructor(fullName, birthYear) {
-//     this.fullName = fullName;
-//     this.birthYear = birthYear;
-//   }
-//   //instance methods
-//   //Method will be added to .prototype property
-//   calcAge() {
-//     console.log(2037 - this.birthYear);
+// class CarCL {
+//   constructor(speed, make) {
+//     this.speed = speed;
+//     this.make = make;
 //   }
 
-//   greet() {
-//     console.log(`Hey  ${this.firstName}`);
+//   accelerate() {
+//     this.speed += 10;
+//     console.log(`${this.make} is going at ${this.speed} km/h`);
 //   }
 
-//   get age() {
-//     return 2037 - this.birthYear;
+//   brake() {
+//     this.speed -= 5;
+//     console.log(`${this.make} is going at ${this.speed} km/h`);
 //   }
 
-//   //set a property that alreadt exist
-//   set fullName(name) {
-//     console.log(name);
-//     if (name.includes(' ')) this._fullName = name;
-//     else alert(`${name} is not a full name`);
+//   get speedUS() {
+//     return this.speed / 1.6;
 //   }
 
-//   get fullName() {
-//     return this._fullName;
-//   }
-
-//   //static methods
-//   static hey() {
-//     console.log('holi');
+//   set speedUS(speed) {
+//     this.speed = speed * 1.6;
 //   }
 // }
+
+// const ford = new CarCL(120, 'Ford');
+
+// ford.speedUS = 50;
+// console.log(ford);
+
+const Person = function (firstName, birthYear) {
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+};
+Person.prototype.calcAge = function () {
+  console.log(2037 - this.birthYear);
+};
+
+const Student = function (firstName, birthYear, course) {
+  // this.firstName = firstName;
+  // this.birthYear = birthYear;
+  //I use the method call bc is going to set the this keyword to the new object that I am creating with the student constructor function
+  Person.call(this, firstName, birthYear); //is not a regular function, bc it it were the this keyword would be set it to undefined
+  this.course = course;
+};
+
+//object create, creates a new prototype and it points out to the object prototype that it wants, allowing the protype chain
+Student.prototype = Object.create(Person.prototype);
+
+// Student.prototype = Person.prototype //it wouldn't be a really good choice because it means the prototype chain it won't be meet, and they would be the exact same object
+
+Student.prototype.introduce = function () {
+  console.log(`My name is ${this.firstName} and I study ${this.course}`);
+};
+
+const mike = new Student('Mike', 2020, 'Computer Science');
+console.log(mike);
+
+mike.introduce();
+mike.calcAge();
+//Comprobando el prototype chain
+console.log(mike instanceof Student);
+console.log(mike instanceof Person);
+console.log(mike instanceof Object);
+
+// console.log(mike.__proto__.__proto__);
