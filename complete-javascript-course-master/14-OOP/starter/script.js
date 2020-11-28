@@ -506,10 +506,12 @@ class Account {
   //public interface of our object
   deposit(val) {
     this.#movements.push(val);
+    return this; //return this to making chainable
   }
 
   withdraw(val) {
     this.deposit(-val);
+    return this;
   }
 
   //is a method is going to be just internally to the bank, is a convention
@@ -521,6 +523,7 @@ class Account {
     if (this._approveLoan(val)) {
       this.deposit(val);
       console.log('Loan approve');
+      return this;
     }
   }
 
@@ -551,3 +554,9 @@ acc1.requestLoan(1000);
 // console.log(acc1.#movements);
 
 Account.helper();
+
+//chaining metods
+
+acc1.deposit(300).deposit(500).withdraw(35).requestLoan(2500).withdraw(4000);
+
+console.log(acc1.getMovements());
