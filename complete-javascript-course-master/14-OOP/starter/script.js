@@ -560,3 +560,72 @@ Account.helper();
 acc1.deposit(300).deposit(500).withdraw(35).requestLoan(2500).withdraw(4000);
 
 console.log(acc1.getMovements());
+
+// Coding Challenge #4
+// Your tasks:
+// 1. Re-create Challenge #3, but this time using ES6 classes: create an 'EVCl'
+// child class of the 'CarCl' class
+// 2. Make the 'charge' property private
+// 3. Implement the ability to chain the 'accelerate' and 'chargeBattery'
+// methods of this class, and also update the 'brake' method in the 'CarCl'
+// class. Then experiment with chaining!
+// Test data:
+// § Data car 1: 'Rivian' going at 120 km/h, with a charge of 23%
+// GOOD LUCK �
+
+class CarCL {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
+
+  accelerate() {
+    this.speed += 10;
+    console.log(`${this.make} is going at ${this.speed} km/h`);
+    return this;
+  }
+
+  brake() {
+    this.speed -= 5;
+    console.log(`${this.make} is going at ${this.speed}km/h`);
+    return this;
+  }
+}
+
+class EVCL extends CarCL {
+  #charge;
+  constructor(make, speed, charge) {
+    super(make, speed);
+
+    this.#charge = charge;
+  }
+
+  chargeBattery(chargeTo) {
+    this.#charge = chargeTo;
+    return this;
+  }
+
+  accelerate() {
+    this.speed += 20;
+    this.#charge--;
+    console.log(
+      `${this.make} is going at ${this.speed} km/h, with a charge of ${
+        this.#charge
+      }`
+    );
+    return this;
+  }
+}
+
+const tesla = new EVCL('Tesla', 120, 23);
+
+// console.log(tesla.#charge);
+
+tesla
+  .accelerate()
+  .chargeBattery(100)
+  .accelerate()
+  .brake()
+  .brake()
+  .accelerate()
+  .chargeBattery(50);
