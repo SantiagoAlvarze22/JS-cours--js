@@ -470,26 +470,42 @@ jay.init('jay', 2010, 'computer');
 jay.introduce();
 jay.calcAge();
 
+//public fields
+//private fields
+//public methods
+//private methods
+// there is also the static version
+
+//field as a property that is going to be in all instances
+
 //another example
 class Account {
+  //1. public fields, they're not going to be in the proptotype, they are going to be in the instances
+  locale = navigator.language;
+
+  //2. Private fields
+  #movements = [];
+  #pin;
+
   constructor(owner, currency, pin) {
     this.owner = owner;
     this.currency = currency;
-    this._pin = pin;
-    this._movements = []; //adding underscore toi make my variable private, is a convention, and to the encapsulation, it is not private is now  PROTECTED PROPERTY
-    this.locale = navigator.language;
+    this.#pin = pin; //redifining the pin keyword
+    // this._movements = []; //adding underscore toi make my variable private, is a convention, and to the encapsulation, it is not private is now  PROTECTED PROPERTY
+    // this.locale = navigator.language;
 
     console.log(`Thans for opening an account, ${owner}`);
   }
 
+  //public methdos
   //PUBLIC INTERFACE
   getMovements() {
-    return this._movements;
+    return this.#movements;
   }
 
   //public interface of our object
   deposit(val) {
-    this._movements.push(val);
+    this.#movements.push(val);
   }
 
   withdraw(val) {
@@ -507,6 +523,16 @@ class Account {
       console.log('Loan approve');
     }
   }
+
+  static helper() {
+    console.log('Helper');
+  }
+
+  //4. private methods
+  // //is a method is going to be just internally to the bank, is a convention
+  // #approveLoan(val) {
+  //   return true;
+  // }
 }
 
 const acc1 = new Account('Jonas', 'EUR', 1111);
@@ -520,6 +546,8 @@ console.log(acc1);
 acc1.deposit(250);
 acc1.withdraw(140);
 acc1.requestLoan(1000);
-console.log(acc1.getMovements());
+// console.log(acc1.#pin);
 
-console.log(acc1);
+// console.log(acc1.#movements);
+
+Account.helper();
