@@ -277,84 +277,164 @@
 // ford.speedUS = 50;
 // console.log(ford);
 
-const Person = function (firstName, birthYear) {
-  this.firstName = firstName;
-  this.birthYear = birthYear;
-};
-Person.prototype.calcAge = function () {
-  console.log(2037 - this.birthYear);
-};
+// const Person = function (firstName, birthYear) {
+//   this.firstName = firstName;
+//   this.birthYear = birthYear;
+// };
+// Person.prototype.calcAge = function () {
+//   console.log(2037 - this.birthYear);
+// };
 
-const Student = function (firstName, birthYear, course) {
-  // this.firstName = firstName;
-  // this.birthYear = birthYear;
-  //I use the method call bc is going to set the this keyword to the new object that I am creating with the student constructor function
-  Person.call(this, firstName, birthYear); //is not a regular function, bc it it were the this keyword would be set it to undefined
-  this.course = course;
-};
+// const Student = function (firstName, birthYear, course) {
+//   // this.firstName = firstName;
+//   // this.birthYear = birthYear;
+//   //I use the method call bc is going to set the this keyword to the new object that I am creating with the student constructor function
+//   Person.call(this, firstName, birthYear); //is not a regular function, bc it it were the this keyword would be set it to undefined
+//   this.course = course;
+// };
 
-//object create, creates a new prototype and it points out to the object prototype that it wants, allowing the protype chain
-Student.prototype = Object.create(Person.prototype);
+// //object create, creates a new prototype and it points out to the object prototype that it wants, allowing the protype chain
+// Student.prototype = Object.create(Person.prototype);
 
-// Student.prototype = Person.prototype //it wouldn't be a really good choice because it means the prototype chain it won't be meet, and they would be the exact same object
+// // Student.prototype = Person.prototype //it wouldn't be a really good choice because it means the prototype chain it won't be meet, and they would be the exact same object
 
-Student.prototype.introduce = function () {
-  console.log(`My name is ${this.firstName} and I study ${this.course}`);
-};
+// Student.prototype.introduce = function () {
+//   console.log(`My name is ${this.firstName} and I study ${this.course}`);
+// };
 
-const mike = new Student('Mike', 2020, 'Computer Science');
-console.log(mike);
+// const mike = new Student('Mike', 2020, 'Computer Science');
+// console.log(mike);
 
-mike.introduce();
-mike.calcAge();
-//Comprobando el prototype chain
-console.log(mike instanceof Student);
-console.log(mike instanceof Person);
-console.log(mike instanceof Object);
+// mike.introduce();
+// mike.calcAge();
+// //Comprobando el prototype chain
+// console.log(mike instanceof Student);
+// console.log(mike instanceof Person);
+// console.log(mike instanceof Object);
 
-// console.log(mike.__proto__.__proto__);
+// // console.log(mike.__proto__.__proto__);
 
-const Car = function (make, speed) {
-  this.make = make;
-  this.speed = speed;
-};
+// const Car = function (make, speed) {
+//   this.make = make;
+//   this.speed = speed;
+// };
 
-Car.prototype.accelerate = function () {
-  this.speed += 10;
-  console.log(`${this.make} is going at ${this.speed} km/h`);
-};
+// Car.prototype.accelerate = function () {
+//   this.speed += 10;
+//   console.log(`${this.make} is going at ${this.speed} km/h`);
+// };
 
-Car.prototype.brake = function () {
-  this.speed -= 5;
-  console.log(`${this.make} is going at ${this.speed}km/h`);
-};
+// Car.prototype.brake = function () {
+//   this.speed -= 5;
+//   console.log(`${this.make} is going at ${this.speed}km/h`);
+// };
 
-const EV = function (make, speed, charge) {
-  Car.call(this, make, speed);
-  this.charge = charge;
-};
+// const EV = function (make, speed, charge) {
+//   Car.call(this, make, speed);
+//   this.charge = charge;
+// };
+
+// // console.log(tesla);
+
+// //linked the prototypes
+// EV.prototype = Object.create(Car.prototype);
+
+// EV.prototype.chargeBattery = function (chargeTo) {
+//   this.charge = chargeTo;
+// };
+
+// EV.prototype.accelerate = function () {
+//   this.speed += 20;
+//   this.charge--;
+//   console.log(
+//     `${this.make} is going at ${this.speed} km/h, with a charge of ${this.charge}`
+//   );
+// };
+
+// const tesla = new EV('Tesla', 120, 23);
+
+// tesla.chargeBattery(90);
 
 // console.log(tesla);
+// tesla.brake();
+// tesla.accelerate();
 
-//linked the prototypes
-EV.prototype = Object.create(Car.prototype);
+class PersonCl {
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
+    this.birthYear = birthYear;
+  }
+  //instance methods
+  //Method will be added to .prototype property
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  }
 
-EV.prototype.chargeBattery = function (chargeTo) {
-  this.charge = chargeTo;
-};
+  greet() {
+    console.log(`Hey  ${this.fullName}`);
+  }
 
-EV.prototype.accelerate = function () {
-  this.speed += 20;
-  this.charge--;
-  console.log(
-    `${this.make} is going at ${this.speed} km/h, with a charge of ${this.charge}`
-  );
-};
+  get age() {
+    return 2037 - this.birthYear;
+  }
 
-const tesla = new EV('Tesla', 120, 23);
+  //set a property that alreadt exist
+  set fullName(name) {
+    console.log(name);
+    if (name.includes(' ')) this._fullName = name;
+    else alert(`${name} is not a full name`);
+  }
 
-tesla.chargeBattery(90);
+  get fullName() {
+    return this._fullName;
+  }
 
-console.log(tesla);
-tesla.brake();
-tesla.accelerate();
+  //static methods
+  static hey() {
+    console.log('holi');
+  }
+}
+
+//If I dont have any new property, I don't need to write a consturctor or super, constructor class and super the parent class
+// class StudentCl extends PersonCl {
+//   // constructor(fullName, birthYear, course) {
+//   //   //Always need to happen first
+//   //   super(fullName, birthYear);
+//   //   this.course = course;
+//   // }
+// }
+
+// const martha = new StudentCl('Martha Jones', 2021, 'Computer Science');
+
+//para que una clase herede de otra clase
+//super, constructor function of the parent class, viariables set in the parent constructor
+
+//prototype chain is automatically set for the extends keyword and I don't need to use the create object
+
+//The calcAge method is overwrite because it appears first in the prototype chain
+class StudentCl extends PersonCl {
+  constructor(fullName, birthYear, course) {
+    //Always need to happen first
+    super(fullName, birthYear);
+    this.course = course;
+  }
+
+  introduce() {
+    console.log(`My name is ${this.fullName} and I study ${this.course}`);
+  }
+
+  calcAge() {
+    console.log(
+      `I'm ${
+        2037 - this.birthYear
+      } years old, btu as a student I feel more like ${
+        2037 - this.birthYear + 10
+      } years old `
+    );
+  }
+}
+
+const martha = new StudentCl('Martha Jones', 2021, 'Computer Science');
+martha.introduce();
+martha.calcAge();
+martha.greet();
