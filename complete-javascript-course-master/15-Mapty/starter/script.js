@@ -81,7 +81,13 @@ class App {
   #mapEvent;
   #workouts = [];
   constructor() {
+    //get user position
     this._getPosition(); //once my code is totaally parsed, is goign to be execute it my method
+
+    //Get data from local storage
+    this._getLocalStorage();
+
+    //Attach event handlres
     form.addEventListener('submit', this._newWorkout.bind(this));
     inputType.addEventListener('change', this._toggleElevationField);
     containerWorkouts.addEventListener('click', this._moveToPopup.bind(this));
@@ -115,6 +121,12 @@ class App {
 
     //handling clicks on map
     this.#map.on('click', this._showForm.bind(this));
+
+    //I call this method here bc it needs to happen a lot of things first my marker is render. so first need to call the postion, after load the map, then charge the workouts and then render the workouts in the map
+    this.#workouts.forEach(work => {
+      //showing the array in the workout container
+      this._renderWorkoutMarker(work);
+    });
   }
 
   _showForm(mapE) {
@@ -200,6 +212,9 @@ class App {
     this._hideForm();
 
     // console.log(mapEvent);
+
+    //set localStoreage to all workouts
+    this._setLocalStorage();
   }
   _renderWorkoutMarker(workout) {
     L.marker(workout.coords)
@@ -288,7 +303,30 @@ class App {
     });
 
     //usisg the punblic interface
-    workout.click();
+    // workout.click();
+  }
+  _setLocalStorage() {
+    localStorage.setItem('workouts', JSON.stringify(this.#workouts));
+  }
+
+  _getLocalStorage() {
+    //when I turn my object into an array it lose all the prototype chain inherit, object lose the prototype
+    const data = JSON.parse(localStorage.getItem('workouts'));
+    // console.log(data);
+
+    if (!data) return;
+
+    this.#workouts = data;
+
+    this.#workouts.forEach(work => {
+      //showing the array in the workout container
+      this._renderWorkout(work);
+    });
+  }
+
+  reset() {
+    localStorage.removeItem('workouts');
+    location.reload();
   }
 }
 
