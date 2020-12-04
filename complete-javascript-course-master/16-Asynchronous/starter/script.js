@@ -133,23 +133,40 @@ const renderCountry = function (data, className = '') {
 //     });
 // };
 
+const getJSON = function (url, errorMsg = 'Something went wrong') {
+  return fetch(url).then(res => {
+    // console.log(res);
+    if (!res.ok) {
+      throw new Error(`${errorMsg} (${res.status})`);
+    }
+    return res.json();
+  });
+};
+
 const getCountryData = function (country) {
   //country1
-  fetch(`https://restcountries.eu/rest/v2/name/${country}`)
-    .then(res => res.json())
+  //throw makes that the  promise is immediately reject
+  getJSON(
+    `https://restcountries.eu/rest/v2/name/${country}`,
+    'Country not found'
+  )
     .then(data => {
       renderCountry(data[0]);
       const neighbour = data[0].borders[0];
+      // const neighbour = 'hey';
 
       //country 2
-      if (!neighbour) return;
-      return fetch(`https://restcountries.eu/rest/v2/alpha/${neighbour}`);
+      if (!neighbour) throw new Error('No neighbour found'); //se lanza este error y lo tomo como err.message en mi catch
+      return getJSON(
+        `https://restcountries.eu/rest/v2/alpha/${neighbour}`,
+        'Country not found'
+      );
     })
-    .then(res => res.json())
-    .then(data => renderCountry(data, 'neightbour'))
+    // .then(res => res.json())
+    .then(data => renderCountry(data, 'neighbour'))
     .catch(err => {
       console.error(`${err} ;) `); //handling errors
-      renderError(`Something went wrong ${err}`);
+      renderError(`Something went wrong ${err.message} try again`); //err.message es todo el mensaje de error conformado en el thrwn error
     })
     .finally(() => {
       countriesContainer.style.opacity = 1;
@@ -159,4 +176,4 @@ const getCountryData = function (country) {
 btn.addEventListener('click', function () {
   getCountryData('colombia');
 });
-// getCountryData('azdsfgfdg');
+// getCountryData('australia');
