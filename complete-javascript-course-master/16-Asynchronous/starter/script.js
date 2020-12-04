@@ -131,8 +131,18 @@ const renderCountry = function (data, className = '') {
 // };
 
 const getCountryData = function (country) {
+  //country1
   fetch(`https://restcountries.eu/rest/v2/name/${country}`)
     .then(res => res.json())
-    .then(data => renderCountry(data[0]));
+    .then(data => {
+      renderCountry(data[0]);
+      const neighbour = data[0].borders[0];
+
+      //country 2
+      if (!neighbour) return;
+      return fetch(`https://restcountries.eu/rest/v2/alpha/${neighbour}`);
+    })
+    .then(res => res.json())
+    .then(data => renderCountry(data, 'neightbour'));
 };
-getCountryData('portugal');
+getCountryData('colombia');
