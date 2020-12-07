@@ -256,41 +256,90 @@ btn.addEventListener('click', () => {});
 // });
 // console.log('Test End');
 
-const lotteryPromise = new Promise(function (resolve, reject) {
-  console.log('Lottery draw is happening');
-  setTimeout(function () {
-    if (Math.random() >= 0.5) {
-      resolve('You win :) ');
-    } else {
-      reject(new Error('You lost your money :( '));
-    }
-  }, 2000);
-});
+// const lotteryPromise = new Promise(function (resolve, reject) {
+//   console.log('Lottery draw is happening');
+//   setTimeout(function () {
+//     if (Math.random() >= 0.5) {
+//       resolve('You win :) ');
+//     } else {
+//       reject(new Error('You lost your money :( '));
+//     }
+//   }, 2000);
+// });
 
-lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
-//promisifiyin setTimeout
-const wait = function (seconds) {
-  return new Promise(function (resolve) {
-    setTimeout(resolve, seconds * 1000);
+// lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
+// //promisifiyin setTimeout
+// const wait = function (seconds) {
+//   return new Promise(function (resolve) {
+//     setTimeout(resolve, seconds * 1000);
+//   });
+// };
+
+// wait(1)
+//   .then(() => {
+//     console.log('I waited for 1 seconds');
+//     return wait(1);
+//   })
+//   .then(() => {
+//     console.log('I waited for 2 second');
+//     return wait(1);
+//   })
+//   .then(() => {
+//     console.log('I waited for 3 second');
+//     return wait(1);
+//   })
+//   .then(() => {
+//     console.log('I waited for 4 second');
+//   });
+
+// Promise.resolve('abc').then(x => console.log(x));
+// Promise.reject('abc').catch(x => console.error(x));
+
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    // navigator.geolocation.getCurrentPosition(
+    //   position => resolve(position),
+    //   err => reject(err)
+    // );
+    navigator.geolocation.getCurrentPosition(resolve, reject);
   });
 };
 
-wait(1)
-  .then(() => {
-    console.log('I waited for 1 seconds');
-    return wait(1);
-  })
-  .then(() => {
-    console.log('I waited for 2 second');
-    return wait(1);
-  })
-  .then(() => {
-    console.log('I waited for 3 second');
-    return wait(1);
-  })
-  .then(() => {
-    console.log('I waited for 4 second');
-  });
+getPosition().then(pos => console.log(pos));
+const whereAmI = function () {
+  getPosition()
+    .then(pos => {
+      const { latitude: lat, longitude: lng } = pos.coords;
+      return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+    })
+    .then(res => {
+      if (!res.ok) throw new Error(`Problem with geoCoding ${res.status}`);
+      return res.json();
+    })
+    .then(data => {
+      console.log(`You're in: ${data.city}, ${data.country}`);
+      return fetch(`https://restcountries.eu/rest/v2/name/${data.country}`);
+    })
+    .then(res => {
+      if (!res.ok) throw new Error(`Country not found (${res.status})`);
+      return res.json();
+    })
+    .then(data => {
+      console.log(data);
+      renderCountry(data[0]);
+      const neighbour = data[0].borders[0];
+      console.log(neighbour);
+      if (!neighbour) throw new Error('No neighbour found');
+      return fetch(`https://restcountries.eu/rest/v2/name/${neighbour}`);
+    })
+    .then(res => {
+      return res.json();
+    })
+    .then(data => {
+      console.log(data);
+      renderCountry(data[0], 'neighbour');
+    })
+    .catch(err => console.error(`${err.message}`));
+};
 
-Promise.resolve('abc').then(x => console.log(x));
-Promise.reject('abc').catch(x => console.error(x));
+btn.addEventListener('click', whereAmI);
