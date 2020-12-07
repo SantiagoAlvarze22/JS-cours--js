@@ -1,31 +1,31 @@
 'use strict';
 
-const btn = document.querySelector('.btn-country');
-const countriesContainer = document.querySelector('.countries');
-const renderError = function (msg) {
-  countriesContainer.insertAdjacentText('beforeend', msg);
-  countriesContainer.style.opacity = 1;
-};
+// const btn = document.querySelector('.btn-country');
+// const countriesContainer = document.querySelector('.countries');
+// const renderError = function (msg) {
+//   countriesContainer.insertAdjacentText('beforeend', msg);
+//   countriesContainer.style.opacity = 1;
+// };
 
-const renderCountry = function (data, className = '') {
-  const html = `
-  <article class="country ${className}">
-    <img class="country__img" src="${data.flag}" />
-    <div class="country__data">
-      <h3 class="country__name">${data.name}</h3>
-      <h4 class="country__region">${data.region}</h4>
-      <p class="country__row"><span>👫</span>${(
-        +data.population / 1000000
-      ).toFixed(1)} people</p>
-      <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
-       <p class="country__row"><span>💰</span>${data.currencies[0].name}</p>
-    </div>
-  </article>
-  `;
+// const renderCountry = function (data, className = '') {
+//   const html = `
+//   <article class="country ${className}">
+//     <img class="country__img" src="${data.flag}" />
+//     <div class="country__data">
+//       <h3 class="country__name">${data.name}</h3>
+//       <h4 class="country__region">${data.region}</h4>
+//       <p class="country__row"><span>👫</span>${(
+//         +data.population / 1000000
+//       ).toFixed(1)} people</p>
+//       <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
+//        <p class="country__row"><span>💰</span>${data.currencies[0].name}</p>
+//     </div>
+//   </article>
+//   `;
 
-  countriesContainer.insertAdjacentHTML('beforeend', html);
-  countriesContainer.style.opacity = 1;
-};
+//   countriesContainer.insertAdjacentHTML('beforeend', html);
+//   countriesContainer.style.opacity = 1;
+// };
 // ///////////////////////////////////////
 
 // // const getCountryData = function (country) {
@@ -133,45 +133,45 @@ const renderCountry = function (data, className = '') {
 //     });
 // };
 
-const getJSON = function (url, errorMsg = 'Something went wrong') {
-  return fetch(url).then(res => {
-    // console.log(res);
-    if (!res.ok) {
-      throw new Error(`${errorMsg} (${res.status})`);
-    }
-    return res.json();
-  });
-};
+// const getJSON = function (url, errorMsg = 'Something went wrong') {
+//   return fetch(url).then(res => {
+//     // console.log(res);
+//     if (!res.ok) {
+//       throw new Error(`${errorMsg} (${res.status})`);
+//     }
+//     return res.json();
+//   });
+// };
 
-const getCountryData = function (country) {
-  //country1
-  //throw makes that the  promise is immediately reject
-  getJSON(
-    `https://restcountries.eu/rest/v2/name/${country}`,
-    'Country not found'
-  )
-    .then(data => {
-      renderCountry(data[0]);
-      const neighbour = data[0].borders[0];
-      // const neighbour = 'hey';
+// const getCountryData = function (country) {
+//   //country1
+//   //throw makes that the  promise is immediately reject
+//   getJSON(
+//     `https://restcountries.eu/rest/v2/name/${country}`,
+//     'Country not found'
+//   )
+//     .then(data => {
+//       renderCountry(data[0]);
+//       const neighbour = data[0].borders[0];
+//       // const neighbour = 'hey';
 
-      //country 2
-      if (!neighbour) throw new Error('No neighbour found'); //se lanza este error y lo tomo como err.message en mi catch
-      return getJSON(
-        `https://restcountries.eu/rest/v2/alpha/${neighbour}`,
-        'Country not found'
-      );
-    })
-    // .then(res => res.json())
-    .then(data => renderCountry(data, 'neighbour'))
-    .catch(err => {
-      console.error(`${err} ;) `); //handling errors
-      renderError(`Something went wrong ${err.message} try again`); //err.message es todo el mensaje de error conformado en el thrwn error
-    })
-    .finally(() => {
-      countriesContainer.style.opacity = 1;
-    }); //function that always need to happen it doesn't matter if the promise is fullfiled or rejected
-};
+//       //country 2
+//       if (!neighbour) throw new Error('No neighbour found'); //se lanza este error y lo tomo como err.message en mi catch
+//       return getJSON(
+//         `https://restcountries.eu/rest/v2/alpha/${neighbour}`,
+//         'Country not found'
+//       );
+//     })
+//     // .then(res => res.json())
+//     .then(data => renderCountry(data, 'neighbour'))
+//     .catch(err => {
+//       console.error(`${err} ;) `); //handling errors
+//       renderError(`Something went wrong ${err.message} try again`); //err.message es todo el mensaje de error conformado en el thrwn error
+//     })
+//     .finally(() => {
+//       countriesContainer.style.opacity = 1;
+//     }); //function that always need to happen it doesn't matter if the promise is fullfiled or rejected
+// };
 
 // getCountryData('australia');
 // Coding Challenge #1
@@ -212,36 +212,45 @@ const getCountryData = function (country) {
 // § Coordinates 3: -33.933, 18.474
 // GOOD LUCK �
 
-const whereAmI = function (lat, lng) {
-  fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
-    .then(res => {
-      if (!res.ok) throw new Error(`Problem with geoCoding ${res.status}`);
-      return res.json();
-    })
-    .then(data => {
-      console.log(`You're in: ${data.city}, ${data.country}`);
-      return fetch(`https://restcountries.eu/rest/v2/name/${data.country}`);
-    })
-    .then(res => {
-      if (!res.ok) throw new Error(`Country not found (${res.status})`);
-      return res.json();
-    })
-    .then(data => {
-      console.log(data);
-      renderCountry(data[0]);
-      const neighbour = data[0].borders[0];
-      console.log(neighbour);
-      if (!neighbour) throw new Error('No neighbour found');
-      return fetch(`https://restcountries.eu/rest/v2/name/${neighbour}`);
-    })
-    .then(res => {
-      return res.json();
-    })
-    .then(data => {
-      console.log(data);
-      renderCountry(data[0], 'neighbour');
-    })
-    .catch(err => console.error(`${err.message}`));
-};
+// const whereAmI = function (lat, lng) {
+//   fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
+//     .then(res => {
+//       if (!res.ok) throw new Error(`Problem with geoCoding ${res.status}`);
+//       return res.json();
+//     })
+//     .then(data => {
+//       console.log(`You're in: ${data.city}, ${data.country}`);
+//       return fetch(`https://restcountries.eu/rest/v2/name/${data.country}`);
+//     })
+//     .then(res => {
+//       if (!res.ok) throw new Error(`Country not found (${res.status})`);
+//       return res.json();
+//     })
+//     .then(data => {
+//       console.log(data);
+//       renderCountry(data[0]);
+//       const neighbour = data[0].borders[0];
+//       console.log(neighbour);
+//       if (!neighbour) throw new Error('No neighbour found');
+//       return fetch(`https://restcountries.eu/rest/v2/name/${neighbour}`);
+//     })
+//     .then(res => {
+//       return res.json();
+//     })
+//     .then(data => {
+//       console.log(data);
+//       renderCountry(data[0], 'neighbour');
+//     })
+//     .catch(err => console.error(`${err.message}`));
+// };
 
-whereAmI(52.508, 13.381);
+// whereAmI(52.508, 13.381);
+
+console.log('Test Start tO THE cONSOLE');
+setTimeout(() => console.log('0 sec timer'), 0);
+Promise.resolve('Resolved promise 1').then(res => console.log(res));
+Promise.resolve('Resolved Promise2').then(res => {
+  for (let i = 0; i < 1000000000; i++) {}
+  console.log(res);
+});
+console.log('Test End');
