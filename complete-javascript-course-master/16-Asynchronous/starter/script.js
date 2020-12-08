@@ -501,27 +501,73 @@ const getJSON = function (url, errorMsg = 'Something went wrong') {
 //   console.log('3:finishing getting location');
 // })();
 
-const get3Countries = async function (c1, c2, c3) {
-  try {
-    // const [data1] = await getJSON(
-    //   `https://restcountries.eu/rest/v2/name/${c1}`
-    // );
-    // const [data2] = await getJSON(
-    //   `https://restcountries.eu/rest/v2/name/${c2}`
-    // );
-    // const [data3] = await getJSON(
-    //   `https://restcountries.eu/rest/v2/name/${c3}`
-    // console.log([data1.capital, data2.capital, data3.capital]);
-    // );
-    //promise in parallel and not in sequence, to make sure, if one promise reject, the Global promise rejects as well
-    const data = await Promise.all([
-      getJSON(`https://restcountries.eu/rest/v2/name/${c1}`),
-      getJSON(`https://restcountries.eu/rest/v2/name/${c2}`),
-      getJSON(`https://restcountries.eu/rest/v2/name/${c3}`),
-    ]);
-    console.log(data.map(d => d[0].capital));
-  } catch (err) {
-    console.error(err);
-  }
+// const get3Countries = async function (c1, c2, c3) {
+//   try {
+//     // const [data1] = await getJSON(
+//     //   `https://restcountries.eu/rest/v2/name/${c1}`
+//     // );
+//     // const [data2] = await getJSON(
+//     //   `https://restcountries.eu/rest/v2/name/${c2}`
+//     // );
+//     // const [data3] = await getJSON(
+//     //   `https://restcountries.eu/rest/v2/name/${c3}`
+//     // console.log([data1.capital, data2.capital, data3.capital]);
+//     // );
+//     //promise in parallel and not in sequence, to make sure, if one promise reject, the Global promise rejects as well
+//     const data = await Promise.all([
+//       getJSON(`https://restcountries.eu/rest/v2/name/${c1}`),
+//       getJSON(`https://restcountries.eu/rest/v2/name/${c2}`),
+//       getJSON(`https://restcountries.eu/rest/v2/name/${c3}`),
+//     ]);
+//     console.log(data.map(d => d[0].capital));
+//   } catch (err) {
+//     console.error(err);
+//   }
+// };
+// get3Countries('colombia', 'canada', 'usa');
+
+//Promise.race return an array of promises and return a promise, fullfilled value of the global promise is going to be the first value that any of my promise returns, no matter if is fullfiled or rejected
+(async function () {
+  const res = await Promise.race([
+    getJSON(`https://restcountries.eu/rest/v2/name/italy`),
+    getJSON(`https://restcountries.eu/rest/v2/name/egypt`),
+    getJSON(`https://restcountries.eu/rest/v2/name/mexico`),
+  ]);
+  console.log(res[0]);
+})();
+
+const timeout = function (sec) {
+  return new Promise(function (_, reject) {
+    setTimeout(function () {
+      reject(new Error('Request took tooooo long'));
+    }, sec * 1000);
+  });
 };
-get3Countries('colombia', 'canada', 'usa');
+
+Promise.race([
+  getJSON(`https://restcountries.eu/rest/v2/name/mexico`),
+  timeout(0.2),
+])
+  .then(res => console.log(res[0]))
+  .catch(err => console.log(err));
+
+//Promise.allSettle, always return the result of all the promises not the same as promise.all
+
+Promise.allSettled([
+  Promise.resolve('Success'),
+  Promise.resolve('Success'),
+  Promise.reject('error'),
+  Promise.resolve('Success'),
+])
+  .then(res => console.log(res))
+  .catch(err => console.error(err));
+
+//Promise any [2021] iut takes an array of multiple promises, it will return the first success promise, and it will simply ignore rejected promises
+Promise.any([
+  Promise.resolve('Success'),
+  Promise.resolve('Success'),
+  Promise.reject('error'),
+  Promise.resolve('Success'),
+])
+  .then(res => console.log(res))
+  .catch(err => console.error(err));
