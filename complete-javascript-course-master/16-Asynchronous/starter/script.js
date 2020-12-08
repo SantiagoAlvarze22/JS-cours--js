@@ -295,51 +295,136 @@ btn.addEventListener('click', () => {});
 // Promise.resolve('abc').then(x => console.log(x));
 // Promise.reject('abc').catch(x => console.error(x));
 
-const getPosition = function () {
-  return new Promise(function (resolve, reject) {
-    // navigator.geolocation.getCurrentPosition(
-    //   position => resolve(position),
-    //   err => reject(err)
-    // );
-    navigator.geolocation.getCurrentPosition(resolve, reject);
+// const getPosition = function () {
+//   return new Promise(function (resolve, reject) {
+//     // navigator.geolocation.getCurrentPosition(
+//     //   position => resolve(position),
+//     //   err => reject(err)
+//     // );
+//     navigator.geolocation.getCurrentPosition(resolve, reject);
+//   });
+// };
+
+// getPosition().then(pos => console.log(pos));
+// const whereAmI = function () {
+//   getPosition()
+//     .then(pos => {
+//       const { latitude: lat, longitude: lng } = pos.coords;
+//       return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+//     })
+//     .then(res => {
+//       if (!res.ok) throw new Error(`Problem with geoCoding ${res.status}`);
+//       return res.json();
+//     })
+//     .then(data => {
+//       console.log(`You're in: ${data.city}, ${data.country}`);
+//       return fetch(`https://restcountries.eu/rest/v2/name/${data.country}`);
+//     })
+//     .then(res => {
+//       if (!res.ok) throw new Error(`Country not found (${res.status})`);
+//       return res.json();
+//     })
+//     .then(data => {
+//       console.log(data);
+//       renderCountry(data[0]);
+//       const neighbour = data[0].borders[0];
+//       console.log(neighbour);
+//       if (!neighbour) throw new Error('No neighbour found');
+//       return fetch(`https://restcountries.eu/rest/v2/name/${neighbour}`);
+//     })
+//     .then(res => {
+//       return res.json();
+//     })
+//     .then(data => {
+//       console.log(data);
+//       renderCountry(data[0], 'neighbour');
+//     })
+//     .catch(err => console.error(`${err.message}`));
+// };
+
+// btn.addEventListener('click', whereAmI);
+// Coding Challenge #2
+// For this challenge you will actually have to watch the video! Then, build the image
+// loading functionality that I just showed you on the screen.
+// Your tasks:
+// Tasks are not super-descriptive this time, so that you can figure out some stuff by
+// yourself. Pretend you're working on your own �
+// PART 1
+// 1. Create a function 'createImage' which receives 'imgPath' as an input.
+// This function returns a promise which creates a new image (use
+// document.createElement('img')) and sets the .src attribute to the
+// provided image path
+// 2. When the image is done loading, append it to the DOM element with the
+// 'images' class, and resolve the promise. The fulfilled value should be the
+// image element itself. In case there is an error loading the image (listen for
+// the'error' event), reject the promise
+// 3. If this part is too tricky for you, just watch the first part of the solution
+// PART 2
+// 4. Consume the promise using .then and also add an error handler
+// 5. After the image has loaded, pause execution for 2 seconds using the 'wait'
+// function we created earlier
+// 6. After the 2 seconds have passed, hide the current image (set display CSS
+// property to 'none'), and load a second image (Hint: Use the image element
+// returned by the 'createImage' promise to hide the current image. You will
+// need a global variable for that �)
+// 7. After the second image has loaded, pause execution for 2 seconds again
+// 8. After the 2 seconds have passed, hide the current image
+// Test data: Images in the img folder. Test the error handler by passing a wrong
+// image path. Set the network speed to “Fast 3G” in the dev tools Network tab,
+// otherwise images load too fast
+// GOOD LUCK �
+
+const wait = function (seconds) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 1000);
   });
 };
 
-getPosition().then(pos => console.log(pos));
-const whereAmI = function () {
-  getPosition()
-    .then(pos => {
-      const { latitude: lat, longitude: lng } = pos.coords;
-      return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
-    })
-    .then(res => {
-      if (!res.ok) throw new Error(`Problem with geoCoding ${res.status}`);
-      return res.json();
-    })
-    .then(data => {
-      console.log(`You're in: ${data.city}, ${data.country}`);
-      return fetch(`https://restcountries.eu/rest/v2/name/${data.country}`);
-    })
-    .then(res => {
-      if (!res.ok) throw new Error(`Country not found (${res.status})`);
-      return res.json();
-    })
-    .then(data => {
-      console.log(data);
-      renderCountry(data[0]);
-      const neighbour = data[0].borders[0];
-      console.log(neighbour);
-      if (!neighbour) throw new Error('No neighbour found');
-      return fetch(`https://restcountries.eu/rest/v2/name/${neighbour}`);
-    })
-    .then(res => {
-      return res.json();
-    })
-    .then(data => {
-      console.log(data);
-      renderCountry(data[0], 'neighbour');
-    })
-    .catch(err => console.error(`${err.message}`));
+const imgContainer = document.querySelector('.images');
+
+const createImage = function (imgPath) {
+  return new Promise((resolve, reject) => {
+    const img = document.createElement('img');
+    img.src = imgPath;
+
+    img.addEventListener('load', function () {
+      imgContainer.append(img);
+      resolve(img);
+    });
+
+    img.addEventListener('error', () => {
+      reject(new Error('Image not found'));
+    });
+  });
 };
 
-btn.addEventListener('click', whereAmI);
+let currentImage;
+
+createImage('img/img-1.jpg')
+  .then(img => {
+    currentImage = img;
+    console.log('Image 1');
+    return wait(2);
+  })
+  .then(() => {
+    currentImage.style.display = 'none';
+    return createImage('img/img-2.jpg');
+  })
+  .then(img => {
+    currentImage = img;
+    console.log('Image 2');
+    return wait(2);
+  })
+  .then(() => {
+    currentImage.style.display = 'none';
+    return createImage('img/img-3.jpg');
+  })
+  .then(img => {
+    currentImage = img;
+    console.log('Image 3');
+    return wait(2);
+  })
+  .then(() => {
+    currentImage.style.display = 'none';
+  })
+  .catch(err => console.error(`${err.message}`));
