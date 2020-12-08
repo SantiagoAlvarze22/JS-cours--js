@@ -451,7 +451,7 @@ const whereAmI = async function () {
     const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
     if (!resGeo.ok) throw new Error('Problem getting location data');
     const dataGeo = await resGeo.json();
-    console.log(dataGeo);
+    // console.log(dataGeo);
 
     //country data
     const res = await fetch(
@@ -460,7 +460,7 @@ const whereAmI = async function () {
     if (!res.ok) throw new Error('Problem getting country data');
 
     const data = await res.json();
-    console.log(data);
+    // console.log(data);
     renderCountry(data[0]);
 
     //neighbour countryData
@@ -471,12 +471,32 @@ const whereAmI = async function () {
     if (!resn.ok) throw new Error('Problem getting neighbour data');
 
     const data1 = await resn.json();
-    console.log(data1);
+    // console.log(data1);
+
     renderCountry(data1[0], 'neighbour');
+    return `You are in ${dataGeo.city}, ${dataGeo.country}`;
   } catch (err) {
-    console.error(err);
+    // console.error(err);
     renderError(`${err.message}`);
+
+    //reject Promise returned form asyn function
+    throw err;
   }
 };
-whereAmI();
-console.log('first');
+// console.log('1');
+// // const city = whereAmI();
+// whereAmI()
+//   .then(city => console.log(city))
+//   .catch(err => console.error(`2: ${err.message}`))
+//   .finally(() => console.log('3:finishing getting location'));
+// console.log('2.');
+
+(async function () {
+  try {
+    const city = await whereAmI();
+    city => console.log(city);
+  } catch (err) {
+    console.error(`2: ${err.message}`);
+  }
+  console.log('3:finishing getting location');
+})();
