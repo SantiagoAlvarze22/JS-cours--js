@@ -18,29 +18,37 @@
 // add('oranges', 13);
 // console.log(cart);
 
-const ShoppingCart2 = (function () {
-  const cart = [];
-  const shoppingCost = 10;
-  const totalPrice = 237;
-  const totalQuantity = 23;
+// const ShoppingCart2 = (function () {
+//   const cart = [];
+//   const shoppingCost = 10;
+//   const totalPrice = 237;
+//   const totalQuantity = 23;
 
-  const addToCart = function (prod, quantity) {
-    cart.push({ prod, quantity });
-    console.log(`${quantity} ${prod} added to the shopping cart`);
-  };
+//   const addToCart = function (prod, quantity) {
+//     cart.push({ prod, quantity });
+//     console.log(`${quantity} ${prod} added to the shopping cart`);
+//   };
 
-  const orderStock = function (prod, quantity) {
-    cart.push({ prod, quantity });
-    console.log(`${quantity} ${prod} added to the shopping supplier`);
-  };
+//   const orderStock = function (prod, quantity) {
+//     cart.push({ prod, quantity });
+//     console.log(`${quantity} ${prod} added to the shopping supplier`);
+//   };
 
-  return {
-    addToCart,
-    cart,
-    totalPrice,
-    totalQuantity,
-  };
-})();
+//   return {
+//     addToCart,
+//     cart,
+//     totalPrice,
+//     totalQuantity,
+//   };
+// })();
 
-ShoppingCart2.addToCart('apple', 2);
-console.log(ShoppingCart2);
+// ShoppingCart2.addToCart('apple', 2);
+// console.log(ShoppingCart2);
+
+export.addTocart = function (prod, quantity) {
+      cart.push({ prod, quantity });
+      console.log(`${quantity} ${prod} added to the shopping cart`);
+    };
+
+    //import 
+    const {addTocart} = require('./shoppingCart.js')
