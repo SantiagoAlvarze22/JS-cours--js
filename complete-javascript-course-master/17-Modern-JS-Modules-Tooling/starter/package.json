@@ -1,0 +1,23 @@
+{
+  "name": "complete-javascript-course-master",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SantiagoAlvarze22/JS-cours--js.git"
+  },
+  "author": "Santiago Alvarez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SantiagoAlvarze22/JS-cours--js/issues"
+  },
+  "homepage": "https://github.com/SantiagoAlvarze22/JS-cours--js#readme",
+  "description": "",
+  "dependencies": {
+    "leaflet": "^1.7.1",
+    "lodash-es": "^4.17.15"
+  }
+}
