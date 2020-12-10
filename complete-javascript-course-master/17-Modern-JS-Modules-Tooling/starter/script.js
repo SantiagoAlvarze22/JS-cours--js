@@ -1,3 +1,4 @@
+import cloneDeep from 'lodash';
 //importing value
 // import { addToCart, totalPrice as price, tq } from './shoppingCart.js';
 // addToCart('breads', tq);
@@ -55,8 +56,6 @@
 //     //import
 //     const {addTocart} = require('./shoppingCart.js')
 
-import cloneDeep from 'lodash';
-
 const state = {
   cart: [
     { product: 'bread', quantity: 5 },
@@ -73,3 +72,26 @@ const stateDeepClone = cloneDeep(state);
 state.user.loggedIn = false;
 
 console.log(stateDeepClone);
+
+if (module.hot) {
+  module.hot.accept();
+}
+
+class Person {
+  #greeting = 'Hey';
+  constructor(name) {
+    this.name = name;
+    console.log(`${this.#greeting}, ${this.name}`);
+  }
+}
+
+const jonas = new Person('jonas');
+
+console.log('Jonas' ?? null);
+
+console.log(state.cart.find(el => el.quantity >= 2));
+
+import 'core-js/stable';
+
+//polyfillung async functions
+import 'regenerator-runtime/runtime';
